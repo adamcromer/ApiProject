@@ -7,7 +7,29 @@ body {
     background:transparent;
 }
 
+<<<<<<< HEAD
 .colors {
     background-color:black;
     color:white;
+=======
+.jumbotron {
+    padding:0;
+}
+
+.colors {
+    background-color:black;
+    color:white;
+}
+
+.mapDiv {
+    height:50vw;
+}
+
+#map {
+    height: 100%;
+}
+
+.nav {
+    height:10vw;
+>>>>>>> a7cd6d06fc83fae8d96df1924ada9c2baf03dfa7
 }
