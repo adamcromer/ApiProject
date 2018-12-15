@@ -1,8 +1,9 @@
 var charityAddress = "addresses of various non profits";
 initMap();
+var map;
 
 function initMap () {
-    var map = new google.maps.Map($("#map"), {
+    map = new google.maps.Map($("#map"), {
         zoom: 8,
         center: {lat: 40.760, lng: 111.891}
     });
