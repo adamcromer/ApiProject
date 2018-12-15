@@ -1,2 +1,2 @@
 # ApiProject
-(https://adamcromer.github.io/ApiProject/)[Link to github pages.]
+[Link to github pages.](https://adamcromer.github.io/ApiProject/) 
