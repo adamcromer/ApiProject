@@ -1,0 +1,13 @@
+html {
+    background: url(../images/ripples.jpg) repeat center center fixed;
+    background-size: 30%;    
+}
+
+body {
+    background:transparent;
+}
+
+.colors {
+    background-color:black;
+    color:white;
+}
