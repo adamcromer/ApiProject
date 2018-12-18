@@ -2,10 +2,10 @@ var charityAddress = "addresses of various non profits";
 initMap();
 var map;
 
-function initMap () {
-    map = new google.maps.Map($("#map"), {
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: {lat: 40.760, lng: 111.891}
+        center: { lat: 40.760, lng: -111.891 }
     });
     // Labels to be used when creating the marker clusters
     var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
