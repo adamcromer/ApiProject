@@ -37,8 +37,32 @@ body {
     height: 100%;
 }
 
-.nav {
-    height:10vw;
+.nav-link {
+    background-color:#50B076;
+    border-color:#222A3F;
+    color:white;
+    margin-top:0.5vw;
+    transition:0.75s;
+}
+
+.nav-link {
+    transition-timing-function: ease-in-out;
+}
+
+.nav-link:hover {
+    background-color:#222A3F;
+    color:#A7D799;
+}
+
+#logoHolder {
+    height:16vw;
+}
+
+
+#logo {
+    height:16vw;
+    width:auto;
+    filter:grayscale(75%);
 }
 
 ::-webkit-scrollbar {
