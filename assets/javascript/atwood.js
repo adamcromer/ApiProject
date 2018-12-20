@@ -16,12 +16,31 @@ $(document).ready(function () {
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         var markers = locations.map(function (location, i) {
-            console.log("hello")
+            
             return new google.maps.Marker({
                 position: location,
                 label: labels[i % labels.length] //  <-----> this goes through the lebel string and treats them like an array.
             });
 
+        });
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+            placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
+        }, function (place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                        'Place ID: ' + place.place_id + '<br>' +
+                        place.formatted_address + '</div>');
+                    infowindow.open(map, this);
+                });
+            }
         });
 
 
