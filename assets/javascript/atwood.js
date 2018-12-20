@@ -16,7 +16,7 @@ $(document).ready(function () {
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         var markers = locations.map(function (location, i) {
-            
+
             return new google.maps.Marker({
                 position: location,
                 label: labels[i % labels.length] //  <-----> this goes through the lebel string and treats them like an array.
