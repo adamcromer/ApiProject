@@ -1,6 +1,13 @@
+/* html {
+    background: url(../images/leaves.jpg) no-repeat center center fixed;
+    /* background-size: 30%;     */
+/* } */
+
 html {
-    background: url(../images/ripples.jpg) repeat center center fixed;
-    background-size: 30%;    
+    background: url(../images/leaves.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
 }
 
 body {
@@ -11,9 +18,15 @@ body {
     padding:0;
 }
 
-.colors {
-    background-color:black;
+.titleStyle {
+    color:#A7D799;
+}
+
+.pStyle {
     color:white;
+}
+.colors {
+    background-color:#222A3F;
 }
 
 .mapDiv {
@@ -24,6 +37,50 @@ body {
     height: 100%;
 }
 
-.nav {
-    height:10vw;
+.nav-link {
+    background-color:#50B076;
+    border-color:#222A3F;
+    color:white;
+    margin-top:0.5vw;
+    transition:0.75s;
 }
+
+.nav-link {
+    transition-timing-function: ease-in-out;
+}
+
+.nav-link:hover {
+    background-color:#222A3F;
+    color:#A7D799;
+}
+
+#logoHolder {
+    height:16vw;
+}
+
+
+#logo {
+    height:16vw;
+    width:auto;
+    filter:grayscale(75%);
+}
+
+::-webkit-scrollbar {
+    width: 1vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #222A3F; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A7D799;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #50B076;
+}
+
+::selection {
+    background: #A7D799;
+  }
