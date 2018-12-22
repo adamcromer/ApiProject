@@ -16,15 +16,19 @@ body {
 
 .jumbotron {
     padding:0;
+    margin-right:30vw;
 }
 
 .titleStyle {
     color:#A7D799;
+    font-family: 'Marcellus', serif;
 }
 
 .pStyle {
     color:white;
+    font-family: 'Asap', sans-serif;
 }
+
 .colors {
     background-color:#222A3F;
 }
@@ -58,11 +62,15 @@ body {
     height:16vw;
 }
 
-
 #logo {
     height:16vw;
     width:auto;
     filter:grayscale(75%);
+}
+
+#calendar {
+    background-color:#A7D799;
+    color:#222A3F;
 }
 
 ::-webkit-scrollbar {
@@ -83,4 +91,4 @@ body {
 
 ::selection {
     background: #A7D799;
-  }
+}
