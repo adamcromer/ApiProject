@@ -9,6 +9,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
+    <link href="https://fonts.googleapis.com/css?family=Asap|Marcellus" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
@@ -16,12 +17,15 @@
 </head>
 
 <body>
-    <div class="container rounded mt-2">
+    <div class="container rounded mt-2" id="welcome">
         <div class="row">
             <div class="col-6 jumbotron jumbotron-fluid bg-black colors rounded border borderStyle mr-1">
                 <div class="container">
                     <h1 class="display-4 titleStyle">Volunteer Finder</h1>
-                    <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.
+                    <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my
+                        espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for
+                        a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists
+                        were so preoccupied with whether or not they could, they didn't stop to think if they should.
                     </p>
                 </div>
             </div>
@@ -29,16 +33,16 @@
             </div>
             <div class="col-2 float-right m-0">
                 <nav class="nav flex-column h-100">
-                    <a class="nav-link border" id="welcome" href="#">Welcome</a>
-                    <a class="nav-link border" id="mapLink" href="#">Map</a>
-                    <a class="nav-link border" href="#">Calendar</a>
-                    <a class="nav-link border" href="#">About Us</a>
+                    <a class="nav-link border pStyle" href="#welcome">Welcome</a>
+                    <a class="nav-link border" href="#map">Map</a>
+                    <a class="nav-link border" href="#calendar">Calendar</a>
+                    <a class="nav-link border" href="#about">About Us</a>
                 </nav>
             </div>
         </div>
     </div>
 
-    <div class="container colors rounded mapDiv p-3 border">
+    <div class="container colors rounded mapDiv p-3 border h-100">
         <div class="row h-100">
             <div class="col-9">
                 <div id="map"></div>
@@ -84,16 +88,38 @@
                     </div>
                     <button class="btn btn-primary mt-3" type="submit" id="submit">Search</button>
                 </form>
-                <p class="mt-4 pStyle">Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager?</p>
+                <p class="mt-4 pStyle">Yeah, but your scientists were so preoccupied with whether or not they could,
+                    they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God
+                    creates Man. Man destroys God. Man creates Dinosaurs. You're a very talented young man, with your
+                    own clever thoughts and ideas. Do you need a manager?</p>
             </div>
         </div>
     </div>
     <div class="container colors rounded calDiv mt-2 border p-3 clearfix">
         <div id="calendar" class="titleStyle w-75 float-left mr-2"></div>
-        <h4 id="currentTime" class="titleStyle ml-3">Tiimmmmme</h4>
+        <div id="dateSwitch">
+            <button class="btn" id="previous">
+                Previous
+            </button>
+            <button class="btn" id="next">
+                Next
+            </button>
+        </div>
+        <div id="viewSwitch">
+            <button class="btn" id="monthView">
+                Month View
+            </button>
+            <button class="btn" id="weekView">
+                Week View
+            </button>
+            <button class="btn" id="dayView">
+                Day View
+            </button>
+        </div>
+        <h4 id="currentTime" class="titleStyle ml-3"></h4>
         <div id="eventsDayOf"></div>
     </div>
-    <div class="container colors rounded aboutDiv mt-2 mb-5 border">
+    <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
         <div class="row">
             <div class="col-6">
                 <h1 class="colors titleStyle">About us:</h1>
@@ -101,10 +127,8 @@
             </div>
             <div class="col-6">
                 <h1 class="colors titleStyle">Contact us:</h1>
-
             </div>
         </div>
-
     </div>
 
     </div>

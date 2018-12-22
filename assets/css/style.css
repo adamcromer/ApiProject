@@ -16,15 +16,19 @@ body {
 
 .jumbotron {
     padding:0;
+    margin-right:30vw;
 }
 
 .titleStyle {
     color:#A7D799;
+    font-family: 'Marcellus', serif;
 }
 
 .pStyle {
     color:white;
+    font-family: 'Asap', sans-serif;
 }
+
 .colors {
     background-color:#222A3F;
 }
