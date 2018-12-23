@@ -26,23 +26,25 @@ $(document).ready(function () {
         });
     }
 
-    next.click(function() {
+    next.click(function () {
         calendar.fullCalendar('next');
     });
 
-    previous.click(function() {
+    previous.click(function () {
         calendar.fullCalendar('prev');
     });
 
-    month.click(function() {
-        calendar.fullCalendar();
+    month.click(function () {
+        calendar.fullCalendar({
+            defaultView: 'month'
+        });
     });
 
-    week.click(function() {
+    week.click(function () {
         calendar.fullCalendar('changeView', 'agendaWeek');
     });
 
-    day.click(function() {
+    day.click(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
     loadCalendar();
