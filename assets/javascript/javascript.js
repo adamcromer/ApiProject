@@ -35,7 +35,7 @@ $(document).ready(function () {
     });
 
     month.click(function() {
-        calendar.fullCalendar('changeView', 'agendaMonth');
+        calendar.fullCalendar();
     });
 
     week.click(function() {
