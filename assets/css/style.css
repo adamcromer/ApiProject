@@ -1,11 +1,6 @@
-/* html {
-    background: url(../images/leaves.jpg) no-repeat center center fixed;
-    /* background-size: 30%;     */
-/* } */
-
 html {
     background: url(../images/leaves.jpg);
-    background-size: cover;
+    background-size: center;
     background-repeat: no-repeat;
     background-position: fixed;
 }
@@ -31,6 +26,19 @@ body {
 
 .colors {
     background-color:#222A3F;
+}
+
+.btn {
+    background-color:#A7D799;
+    border-color:white;
+    color:#222A3F;
+    margin-top:0.25vw;
+}
+
+.btn:hover {
+    background-color:#222A3F;
+    color:#A7D799;
+    border-color:white;
 }
 
 .mapDiv {
@@ -75,7 +83,11 @@ body {
 
 #addNewEvent {
     display:none;
-    /* position:fixed; */
+    position:fixed;
+    top:1vw;
+    left:25%;
+    width:50%;
+    z-index:1000;
 }
 
 #error {
