@@ -24,6 +24,8 @@ $(document).ready(function () {
     var week = $("#weekView");
     var day = $("#dayView");
     var addEvent = $("#addEvent");
+    var eventDiv = $("#addNewEvent");
+    var closeEvent = $("#closeEvent");
 
     //Function to show the current time
     function setCurrentTime() {
@@ -42,6 +44,26 @@ $(document).ready(function () {
     function loadCalendar() {
         calendar.fullCalendar({
 
+            events: [
+                {
+                    title: "Test",
+                    start: "2018-12-25",
+                    description: "It's Christmas apparently.",
+                    color: '#A7D799',
+                    eventBackgroundColor: '#A7D799'
+                }
+
+
+                
+            ],
+
+            eventColor: '#A7D799'
+            
+            // eventRender: function (event, element) {
+            //     element.qTip({
+            //         content: event.description
+            //     });
+            // }
         });
     }
 
@@ -62,6 +84,9 @@ $(document).ready(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
     addEvent.click(function () {
+
+        eventDiv.show();
+
         database.ref().push({
             name: name,
             host: host,
@@ -71,6 +96,12 @@ $(document).ready(function () {
         });
     });
 
+    closeEvent.click(function () {
+        eventDiv.hide();
+    });
+
     loadCalendar();
+
+
 
 });

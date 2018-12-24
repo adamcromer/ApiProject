@@ -73,6 +73,15 @@ body {
     color:#222A3F;
 }
 
+#addNewEvent {
+    display:none;
+    /* position:fixed; */
+}
+
+#error {
+    display:none;
+}
+
 ::-webkit-scrollbar {
     width: 1vw;
 }
