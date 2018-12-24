@@ -1,5 +1,19 @@
 $(document).ready(function () {
 
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBtyqihgVGOF1xetV3zTOFbgSBR17ZU4Kg",
+        authDomain: "apiproject-85c1f.firebaseapp.com",
+        databaseURL: "https://apiproject-85c1f.firebaseio.com",
+        projectId: "apiproject-85c1f",
+        storageBucket: "apiproject-85c1f.appspot.com",
+        messagingSenderId: "410963970652"
+    };
+
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+    //Declaring variables equal to their HTML counterparts
     var submit = $("#submit");
     var calendar = $('#calendar');
     var currentTime = $("#currentTime");
@@ -9,42 +23,54 @@ $(document).ready(function () {
     var month = $("#monthView");
     var week = $("#weekView");
     var day = $("#dayView");
+    var addEvent = $("#addEvent");
 
     //Function to show the current time
     function setCurrentTime() {
         currentTime.text(moment().format('dddd, MMMM Do, YYYY [at] h:mm:ss A'));
     }
+
     //Starts the time function to run every second
     emptyTimeVar = setInterval(setCurrentTime, 1000);
 
+    //What happens when you click the submit button on map
     submit.click(function (event) {
         event.preventDefault();
     });
 
+    //Loads the calendar on to the page
     function loadCalendar() {
         calendar.fullCalendar({
+
         });
     }
 
-    next.click(function() {
+    //Actions for calendar buttons
+    next.click(function () {
         calendar.fullCalendar('next');
     });
-
-    previous.click(function() {
+    previous.click(function () {
         calendar.fullCalendar('prev');
     });
-
-    month.click(function() {
-        calendar.fullCalendar('changeView', 'agendaMonth');
+    month.click(function () {
+        calendar.fullCalendar('changeView', 'month');
     });
-
-    week.click(function() {
+    week.click(function () {
         calendar.fullCalendar('changeView', 'agendaWeek');
     });
-
-    day.click(function() {
+    day.click(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
+    addEvent.click(function () {
+        database.ref().push({
+            name: name,
+            host: host,
+            address: address,
+            date: date,
+            description: description
+        });
+    });
+
     loadCalendar();
 
 });
