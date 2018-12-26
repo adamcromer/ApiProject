@@ -14,7 +14,7 @@ $(document).ready(function () {
     var database = firebase.database();
 
     //Declaring variables equal to their HTML counterparts
-    var submit = $("#submit");
+    var zipSearch = $("#zipSearch");
     var calendar = $('#calendar');
     var currentTime = $("#currentTime");
     var emptyTimeVar;
@@ -24,6 +24,9 @@ $(document).ready(function () {
     var week = $("#weekView");
     var day = $("#dayView");
     var addEvent = $("#addEvent");
+    var eventDiv = $("#addNewEvent");
+    var closeEvent = $("#closeEvent");
+    var newEventSubmit = $("#eventSubmit");
 
     //Function to show the current time
     function setCurrentTime() {
@@ -34,13 +37,24 @@ $(document).ready(function () {
     emptyTimeVar = setInterval(setCurrentTime, 1000);
 
     //What happens when you click the submit button on map
-    submit.click(function (event) {
+    zipSearch.click(function (event) {
         event.preventDefault();
     });
 
     //Loads the calendar on to the page
     function loadCalendar() {
         calendar.fullCalendar({
+
+            events: [
+                {
+                    title: "Test",
+                    start: "2018-12-25",
+                    description: "It's Christmas apparently.",
+                    color: '#A7D799',
+                    eventBackgroundColor: '#A7D799'
+                }
+            ],
+            eventColor: '#A7D799'
 
         });
     }
@@ -62,15 +76,28 @@ $(document).ready(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
     addEvent.click(function () {
-        database.ref().push({
-            name: name,
-            host: host,
-            address: address,
-            date: date,
-            description: description
-        });
+        eventDiv.show();
+    });
+    closeEvent.click(function () {
+        eventDiv.hide();
+    });
+
+    newEventSubmit.click(function () {
+        event.preventDefault();
+
+        eventDiv.hide();
+
+        // database.ref().push({
+        //     name: name,
+        //     host: host,
+        //     address: address,
+        //     date: date,
+        //     description: description
+        // });
     });
 
     loadCalendar();
+
+
 
 });

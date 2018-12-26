@@ -52,9 +52,6 @@
                     <label for="validationCustom05" class="ml-2 titleStyle">Zip Code</label>
                     <input type="text" class="form-control w-50" id="validationCustom05" placeholder="00000" maxlength="5"
                         required>
-                    <div class="invalid-feedback">
-                        Please provide a valid zip.
-                    </div>
 
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -86,7 +83,7 @@
                             Test checkbox
                         </label>
                     </div>
-                    <button class="btn btn-primary mt-3" type="submit" id="submit">Search</button>
+                    <button class="btn btn-primary mt-3" type="submit" id="zipSearch">Search</button>
                 </form>
                 <p class="mt-4 pStyle">Yeah, but your scientists were so preoccupied with whether or not they could,
                     they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God
@@ -122,7 +119,38 @@
         <h4 id="currentTime" class="titleStyle ml-3"></h4>
         <div id="eventsDayOf"></div>
     </div>
-    <div class="container" id="addNewEvent"></div>
+    <div class="rounded colors border" id="addNewEvent">
+        <h4 class="m-3 titleStyle float-left">Add Event</h4>
+        <button class="m-3 btn float-right" id="closeEvent">
+            X
+        </button>
+        <br><br>
+        <form class="m-3 pStyle">
+            <div class="form-group mt-2">
+                <label>Your Organization Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Event Placeholder">
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Address Placeholder">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" class="form-control black" id="time">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control black" id="frequency" placeholder="Event Description">
+            </div>
+            <button id="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
+            <h3 class="float-right titleFont border rounded" id="error">All fields are required to add an event. Please
+                try again.</h3>
+        </form>
+    </div>
     <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
         <div class="row">
             <div class="col-6">
@@ -135,7 +163,6 @@
         </div>
     </div>
 
-    </div>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
