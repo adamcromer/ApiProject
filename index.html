@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
+    <link href="https://fonts.googleapis.com/css?family=Asap|Marcellus" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
@@ -14,15 +17,15 @@
 </head>
 
 <body>
-    <div class="container rounded mt-2">
+    <div class="container rounded mt-2" id="welcome">
         <div class="row">
             <div class="col-6 jumbotron jumbotron-fluid bg-black colors rounded border borderStyle mr-1">
                 <div class="container">
                     <h1 class="display-4 titleStyle">Volunteer Finder</h1>
-                    <p class="lead pStyle">Irure ipsum laborum eiusmod veniam nulla tempor ea. Dolore fugiat laboris
-                        sint
-                        irure occaecat occaecat nostrud aute mollit cillum aliqua. Excepteur sunt incididunt ut
-                        consequat cupidatat aute eu proident aute mollit nisi ut ullamco eu.
+                    <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my
+                        espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for
+                        a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists
+                        were so preoccupied with whether or not they could, they didn't stop to think if they should.
                     </p>
                 </div>
             </div>
@@ -30,16 +33,16 @@
             </div>
             <div class="col-2 float-right m-0">
                 <nav class="nav flex-column h-100">
-                    <a class="nav-link border" id="welcome" href="#">Welcome</a>
-                    <a class="nav-link border" id="mapLink" href="#">Map</a>
-                    <a class="nav-link border" href="#">About Us</a>
-                    <a class="nav-link border" href="#">Contact Us</a>
+                    <a class="nav-link border pStyle" href="#welcome">Welcome</a>
+                    <a class="nav-link border" href="#map">Map</a>
+                    <a class="nav-link border" href="#calendar">Calendar</a>
+                    <a class="nav-link border" href="#about">About Us</a>
                 </nav>
             </div>
         </div>
     </div>
 
-    <div class="container colors rounded mapDiv p-3 border">
+    <div class="container colors rounded mapDiv p-3 border h-100">
         <div class="row h-100">
             <div class="col-9">
                 <div id="map"></div>
@@ -49,9 +52,6 @@
                     <label for="validationCustom05" class="ml-2 titleStyle">Zip Code</label>
                     <input type="text" class="form-control w-50" id="validationCustom05" placeholder="00000" maxlength="5"
                         required>
-                    <div class="invalid-feedback">
-                        Please provide a valid zip.
-                    </div>
 
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -83,15 +83,75 @@
                             Test checkbox
                         </label>
                     </div>
-                    <button class="btn btn-primary mt-3" type="submit">Search</button>
+                    <button class="btn btn-primary mt-3" type="submit" id="zipSearch">Search</button>
                 </form>
-                <p class="mt-4 pStyle">Minim minim laboris aute in. Voluptate deserunt adipisicing aliqua ut. Fugiat
-                    eiusmod aliqua cupidatat ex dolor culpa ipsum ullamco occaecat amet minim nostrud in aliqua.
-                    Cupidatat deserunt qui nulla nisi sit.</p>
+                <p class="mt-4 pStyle">Yeah, but your scientists were so preoccupied with whether or not they could,
+                    they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God
+                    creates Man. Man destroys God. Man creates Dinosaurs. You're a very talented young man, with your
+                    own clever thoughts and ideas. Do you need a manager?</p>
             </div>
         </div>
     </div>
-    <div class="container colors rounded aboutDiv mt-2 mb-5 border">
+    <div class="container colors rounded calDiv mt-2 border p-3 clearfix">
+        <div id="calendar" class="titleStyle w-75 float-left mr-2"></div>
+        <div id="dateSwitch">
+            <button class="btn" id="previous">
+                Previous
+            </button>
+            <button class="btn" id="next">
+                Next
+            </button>
+        </div>
+        <div id="viewSwitch">
+            <button class="btn" id="monthView">
+                Month View
+            </button>
+            <button class="btn" id="weekView">
+                Week View
+            </button>
+            <button class="btn" id="dayView">
+                Day View
+            </button>
+            <button class="btn" id="addEvent">
+                Add Event
+            </button>
+        </div>
+        <h4 id="currentTime" class="titleStyle ml-3"></h4>
+        <div id="eventsDayOf"></div>
+    </div>
+    <div class="rounded colors border" id="addNewEvent">
+        <h4 class="m-3 titleStyle float-left">Add Event</h4>
+        <button class="m-3 btn float-right" id="closeEvent">
+            X
+        </button>
+        <br><br>
+        <form class="m-3 pStyle">
+            <div class="form-group mt-2">
+                <label>Your Organization Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Event Placeholder">
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Address Placeholder">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" class="form-control black" id="time">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control black" id="frequency" placeholder="Event Description">
+            </div>
+            <button id="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
+            <h3 class="float-right titleFont border rounded" id="error">All fields are required to add an event. Please
+                try again.</h3>
+        </form>
+    </div>
+    <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
         <div class="row">
             <div class="col-6">
                 <h1 class="colors titleStyle">About us:</h1>
@@ -99,13 +159,10 @@
             </div>
             <div class="col-6">
                 <h1 class="colors titleStyle">Contact us:</h1>
-
             </div>
         </div>
-
     </div>
 
-    </div>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
@@ -121,9 +178,13 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhsV8CCFJxMuiyfocsigyy10b3pCdWG80&libraries=places&callback=initMap">
     </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
     <script type="text/javascript" src="assets/javascript/markerCluster.js"></script>
     <script type="text/javascript" src="assets/javascript/javascript.js"></script>
     <script type="text/javascript" src="assets/javascript/atwood.js"></script>
+
+
 
 </body>
 
