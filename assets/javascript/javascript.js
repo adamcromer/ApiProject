@@ -28,6 +28,7 @@ $(document).ready(function () {
     var closeEvent = $("#closeEvent");
     var newEventSubmit = $("#eventSubmit");
 
+
     //Function to show the current time
     function setCurrentTime() {
         currentTime.text(moment().format('dddd, MMMM Do, YYYY [at] h:mm:ss A'));
@@ -85,19 +86,36 @@ $(document).ready(function () {
     newEventSubmit.click(function () {
         event.preventDefault();
 
-        eventDiv.hide();
+        //Declare variables for the value in the inputs
+        var name = $("#name").val().trim();
+        var title = $("#title").val().trim();
+        var address = $("#address").val().trim();
+        var date = $("#date").val().trim();
+        var time = $("#time").val().trim();
+        var description = $("#description").val().trim();
 
-        // database.ref().push({
-        //     name: name,
-        //     host: host,
-        //     address: address,
-        //     date: date,
-        //     description: description
-        // });
+        //Clears out the inputs
+        $("#name").text("");
+        $("#title").text("");
+        $("#address").text("");
+        $("#date").text("");
+        $("#time").text("");
+        $("#description").text("");
+
+        //Pushes the values to Firebase
+        database.ref().push({
+            name: name,
+            title: title,
+            address: address,
+            date: date,
+            time: time,
+            description: description
+        });
+
+        //Hide the submit form
+        eventDiv.hide();
     });
 
     loadCalendar();
-
-
 
 });

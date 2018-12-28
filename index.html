@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
     <link href="https://fonts.googleapis.com/css?family=Asap|Marcellus" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
     <title>Volunteer Finder</title>
@@ -121,7 +122,7 @@
     </div>
     <div class="rounded colors border" id="addNewEvent">
         <h4 class="m-3 titleStyle float-left">Add Event</h4>
-        <button class="m-3 btn float-right" id="closeEvent">
+        <button class="m-3 mb-0 btn float-right" id="closeEvent">
             X
         </button>
         <br><br>
@@ -129,22 +130,29 @@
             <div class="form-group mt-2">
                 <label>Your Organization Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Event Placeholder">
+            </div>            
+            <div class="form-group">
+                <label>Event Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Killer Event">
             </div>
+            <div class="form-group float-left">
+                <label>Time</label>
+                <input type="time" class="form-control black" id="time">
+            </div>
+            <div class="form-group float-left ml-5">
+                <label>Date</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <br><br><br><br>
             <div class="form-group">
                 <label>Address</label>
                 <input type="text" class="form-control" id="address" placeholder="Address Placeholder">
             </div>
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" class="form-control" id="date">
-            </div>
-            <div class="form-group">
-                <label>Time</label>
-                <input type="time" class="form-control black" id="time">
-            </div>
+            
+            
             <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control black" id="frequency" placeholder="Event Description">
+                <input type="text" class="form-control black" id="description" placeholder="Event Description">
             </div>
             <button id="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
             <h3 class="float-right titleFont border rounded" id="error">All fields are required to add an event. Please

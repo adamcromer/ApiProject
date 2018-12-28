@@ -90,6 +90,11 @@ body {
     z-index:1000;
 }
 
+#date,
+#time {
+    width:100%;
+}
+
 #error {
     display:none;
 }
