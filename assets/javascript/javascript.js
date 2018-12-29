@@ -26,7 +26,9 @@ $(document).ready(function () {
     var addEvent = $("#addEvent");
     var eventDiv = $("#addNewEvent");
     var closeEvent = $("#closeEvent");
-    var newEventSubmit = $("#eventSubmit");
+    var eventSubmit = $("#eventSubmit");
+    var eventReset = $("#eventReset");
+    var error = $("#error");
 
     //Function to show the current time
     function setCurrentTime() {
@@ -50,12 +52,10 @@ $(document).ready(function () {
                     title: "Test",
                     start: "2018-12-25",
                     description: "It's Christmas apparently.",
-                    color: '#A7D799',
-                    eventBackgroundColor: '#A7D799'
+                    // color: '#A7D799',
+                    // eventBackgroundColor: '#A7D799'
                 }
             ],
-            eventColor: '#A7D799'
-
         });
     }
 
@@ -82,22 +82,84 @@ $(document).ready(function () {
         eventDiv.hide();
     });
 
-    newEventSubmit.click(function () {
+    function clearSubmit() {
+        //Clears out the inputs
+        $("#name").val("");
+        $("#title").val("");
+        $("#address").val("");
+        $("#date").val("");
+        $("#time").val("");
+        $("#description").val("");
+    }
+
+    eventSubmit.click(function () {
         event.preventDefault();
 
-        eventDiv.hide();
+        //Declare variables for the value in the inputs
+        var name = $("#name").val().trim();
+        var title = $("#title").val().trim();
+        var address = $("#address").val().trim();
+        var date = $("#date").val().trim();
+        var time = $("#time").val().trim();
+        var description = $("#description").val().trim();
 
-        // database.ref().push({
-        //     name: name,
-        //     host: host,
-        //     address: address,
-        //     date: date,
-        //     description: description
-        // });
+        //Shows an error if an input is empty.
+        if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
+            error.show();
+        }
+        else {
+            //Pushes the values to Firebase
+            database.ref().push({
+                name: name,
+                title: title,
+                address: address,
+                date: date,
+                time: time,
+                description: description
+            });
+
+            clearSubmit();
+            error.hide();
+            eventDiv.hide();
+        }
+    });
+
+    eventReset.click(function () {
+        event.preventDefault();
+        clearSubmit();
+    });
+
+    database.ref().on("child_added", function (snapshot) {
+
+        var name = snapshot.val().name;
+        var title = snapshot.val().title;
+        var address = snapshot.val().address;
+        var date = snapshot.val().date;
+        var time = snapshot.val().time;
+        var dateAndTime = moment(date + " " + time);
+        console.log(dateAndTime.format());
+        var description = snapshot.val().description;
+        console.log(title)
+        console.log(description)
+
+        calendar.fullCalendar({
+
+            event: [
+                {
+                    title: title,
+                    name: name,
+                    start: dateAndTime,
+                    address: address,
+                    description: description,
+                    allDay: false,
+                    color: '#A7D799',
+                    eventBackgroundColor: '#A7D799'
+
+                }
+            ],
+        });
     });
 
     loadCalendar();
-
-
 
 });

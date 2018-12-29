@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Asap|Marcellus" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+
     <link rel="icon" type="image/png" href="assets/images/icon.png">
     <title>Volunteer Finder</title>
 </head>
@@ -93,35 +94,41 @@
         </div>
     </div>
     <div class="container colors rounded calDiv mt-2 border p-3 clearfix">
-        <div id="calendar" class="titleStyle w-75 float-left mr-2"></div>
-        <div id="dateSwitch">
-            <button class="btn" id="previous">
-                Previous
-            </button>
-            <button class="btn" id="next">
-                Next
-            </button>
+        <div class="row">
+            <div class="col-8">
+                <h4 id="currentTime" class="titleStyle"></h4>
+                <div id="dateSwitch" class="float-left">
+                    <button class="btn" id="previous">
+                        Previous
+                    </button>
+                    <button class="btn" id="next">
+                        Next
+                    </button>
+                </div>
+                <div id="viewSwitch" class="float-right">
+                    <button class="btn" id="monthView">
+                        Month View
+                    </button>
+                    <button class="btn" id="weekView">
+                        Week View
+                    </button>
+                    <button class="btn" id="dayView">
+                        Day View
+                    </button>
+                </div>
+                <div id="calendar" class="titleStyle float-left mt-1"></div>
+            </div>
+            <div class="col-3">
+                <button class="btn" id="addEvent">
+                    Add Event
+                </button>
+                <div id="eventsDayOf"></div>
+            </div>
         </div>
-        <div id="viewSwitch">
-            <button class="btn" id="monthView">
-                Month View
-            </button>
-            <button class="btn" id="weekView">
-                Week View
-            </button>
-            <button class="btn" id="dayView">
-                Day View
-            </button>
-            <button class="btn" id="addEvent">
-                Add Event
-            </button>
-        </div>
-        <h4 id="currentTime" class="titleStyle ml-3"></h4>
-        <div id="eventsDayOf"></div>
     </div>
     <div class="rounded colors border" id="addNewEvent">
         <h4 class="m-3 titleStyle float-left">Add Event</h4>
-        <button class="m-3 btn float-right" id="closeEvent">
+        <button class="m-3 mb-0 btn float-right" id="closeEvent">
             X
         </button>
         <br><br>
@@ -131,24 +138,30 @@
                 <input type="text" class="form-control" id="name" placeholder="Event Placeholder">
             </div>
             <div class="form-group">
+                <label>Event Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Killer Event">
+            </div>
+            <div class="form-group float-left">
+                <label>Time</label>
+                <input type="time" class="form-control black" id="time">
+            </div>
+            <div class="form-group float-left ml-5">
+                <label>Date</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <br><br><br><br>
+            <div class="form-group">
                 <label>Address</label>
                 <input type="text" class="form-control" id="address" placeholder="Address Placeholder">
             </div>
             <div class="form-group">
-                <label>Date</label>
-                <input type="date" class="form-control" id="date">
-            </div>
-            <div class="form-group">
-                <label>Time</label>
-                <input type="time" class="form-control black" id="time">
-            </div>
-            <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control black" id="frequency" placeholder="Event Description">
+                <input type="text" class="form-control black" id="description" placeholder="Event Description">
             </div>
             <button id="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
-            <h3 class="float-right titleFont border rounded" id="error">All fields are required to add an event. Please
-                try again.</h3>
+            <button id="eventReset" class="btn btn-primary ml-3">Reset</button>
+            <p class="float-right titleStyle border rounded mt-2" id="error">All fields are required to add an event.
+                Please try again.</p>
         </form>
     </div>
     <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
