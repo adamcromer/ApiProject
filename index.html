@@ -95,9 +95,15 @@
     </div>
     <div class="container colors rounded calDiv mt-2 border p-3 clearfix">
         <div class="row">
-            <div class="col-8">
-                <h4 id="currentTime" class="titleStyle"></h4>
-                <div id="dateSwitch" class="float-left">
+            <div>
+                <div>
+                    <h4 id="currentTime" class="titleStyle float-left ml-2"></h4>
+                    <button class="btn float-right mr-2" id="addEvent">
+                        Create New Event
+                    </button>
+                </div>
+                <br><br>
+                <div id="dateSwitch" class="float-left ml-2">
                     <button class="btn" id="previous">
                         Previous
                     </button>
@@ -105,7 +111,7 @@
                         Next
                     </button>
                 </div>
-                <div id="viewSwitch" class="float-right">
+                <div id="viewSwitch" class="float-right mr-2">
                     <button class="btn" id="monthView">
                         Month View
                     </button>
@@ -116,12 +122,10 @@
                         Day View
                     </button>
                 </div>
-                <div id="calendar" class="titleStyle float-left mt-1"></div>
+                <div id="calendar" class="titleStyle float-left m-2 mt-2 border rounded"></div>
             </div>
-            <div class="col-3">
-                <button class="btn" id="addEvent">
-                    Add Event
-                </button>
+            <div>
+
                 <div id="eventsDayOf"></div>
             </div>
         </div>
