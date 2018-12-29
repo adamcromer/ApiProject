@@ -47,6 +47,8 @@ $(document).ready(function () {
     function loadCalendar() {
         calendar.fullCalendar({
 
+            
+
             events: [
                 {
                     title: "Test",
@@ -80,6 +82,7 @@ $(document).ready(function () {
     });
     closeEvent.click(function () {
         eventDiv.hide();
+        error.hide();
     });
 
     function clearSubmit() {
@@ -142,7 +145,7 @@ $(document).ready(function () {
         console.log(title)
         console.log(description)
 
-        calendar.fullCalendar({
+        $("#calendar").fullCalendar({
 
             event: [
                 {
