@@ -164,5 +164,6 @@ $(document).ready(function () {
     });
 
     loadCalendar();
+    
 
 });
