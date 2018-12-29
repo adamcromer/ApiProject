@@ -84,7 +84,7 @@ body {
 #addNewEvent {
     display:none;
     position:fixed;
-    top:1vw;
+    top:0.5vw;
     left:25%;
     width:50%;
     z-index:1000;
