@@ -81,6 +81,24 @@ body {
     color:#222A3F;
 }
 
+.smallCal {
+    width:66%;
+}
+
+#eventInfo {
+    width:33%;
+    margin-top:12vw;
+    margin-bottom:1vw;
+    padding-bottom:0;
+    background-color:#A7D799;
+}
+
+.blueText {
+    color: #222A3F;
+}
+
+
+
 #addNewEvent {
     display:none;
     position:fixed;
