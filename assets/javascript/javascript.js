@@ -117,9 +117,8 @@ $(document).ready(function () {
     testButton.click(function () {
         event.preventDefault();
         eventInfo.toggle();
-        calendarContainer.toggleClass("smallCal");
+        calendarContainer.toggleClass("smallCal", 1000, "easeOutBounce");
     });
-
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
