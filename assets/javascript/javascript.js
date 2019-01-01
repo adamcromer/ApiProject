@@ -30,8 +30,7 @@ $(document).ready(function () {
     var eventReset = $("#eventReset");
     var error = $("#error");
     var calendarContainer = $("#calendarCont");
-    var eventInfo = $("#eventInfo");
-    var newEventSource = {};
+    var eventInfo = $("#eventInfo");    
     var testButton = $("#testButton");
 
     //Function to show the current time
@@ -67,12 +66,14 @@ $(document).ready(function () {
         eventDiv.show();
     });
     closeEvent.click(function () {
-        eventDiv.hide();
+        eventDiv.hide("drop", "slow");
         error.hide();
+        clearSubmit();
     });
+    eventDiv.draggable();
 
+    //Clears out the inputs
     function clearSubmit() {
-        //Clears out the inputs
         $("#name").val("");
         $("#title").val("");
         $("#address").val("");
@@ -81,8 +82,15 @@ $(document).ready(function () {
         $("#description").val("");
     }
 
+    //This minimizes the calendar and shows the event info on the side.
+    function showEventInfo() {
+        eventInfo.toggle(2000);
+        calendarContainer.toggleClass("smallCal", 500)
+    }
+
     eventSubmit.click(function () {
         event.preventDefault();
+        console.log("submit");
 
         //Declare variables for the value in the inputs
         var name = $("#name").val().trim();
@@ -116,81 +124,80 @@ $(document).ready(function () {
 
     testButton.click(function () {
         event.preventDefault();
-        eventInfo.toggle();
-        calendarContainer.toggleClass("smallCal", 1000, "easeOutBounce");
+        showEventInfo();
+        
     });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
+        console.log("reset");
     });
 
-    // database.ref().on("child_added", function (snapshot) {
+    // function snapshotToArray(snapshot) {
+    //     var returnArr = [];
 
-    //     console.log("firebase", snapshot.val());
-    //     data = snapshot.val();
-    //     var name = snapshot.val().name;
-    //     var title = snapshot.val().title;
-    //     var address = snapshot.val().address;
-    //     var date = snapshot.val().date;
-    //     var time = snapshot.val().time;
-    //     var dateAndTime = moment(date + " " + time);
-    //     // console.log(dateAndTime.format());
-    //     var description = snapshot.val().description;
-    //     // console.log(title)
-    //     // console.log(description)
+    //     snapshot.forEach(function (childSnapshot) {
+    //         var item = childSnapshot.val();
+    //         item.key = childSnapshot.key;
 
-    //     // $("#calendar").fullCalendar('addEventSource', snapshot.val()
+    //         returnArr.push(item);
+    //     });
 
-    //     // {
+    //     return returnArr;
+    // };
 
+    // var snapshotArr = snapshotToArray(snapshot);
+    // console.log("firebase", snapshotArr);
 
-
-    //     // event: [
-    //     //     {
-    //     //         title: title,
-    //     //         name: name,
-    //     //         start: dateAndTime,
-    //     //         address: address,
-    //     //         description: description,
-    //     //         allDay: false,
-    //     //         color: '#A7D799',
-    //     //         eventBackgroundColor: '#A7D799'
-
-    //     //     }
-    //     // ],
-    //     // }
-    //     // );
-    // });
     database.ref().on("child_added", function (snapshot) {
-        newEventSource = { events: snapshot.val() };
-        calendar.fullCalendar();
-        calendar.fullCalendar('addEventSource', newEventSource);   
-    });
 
+        data = snapshot.val();
+        var name = snapshot.val().name;
+        var title = snapshot.val().title;
+        var address = snapshot.val().address;
+        var date = snapshot.val().date;
+        var time = snapshot.val().time;
+        var dateAndTime = moment(date + " " + time);
+        console.log(dateAndTime.format());
+        var description = snapshot.val().description;
+        console.log(title);
+        console.log(description);
+
+        calendar.fullCalendar({
+
+            events: [
+                {
+                    title: title,
+                    name: name,
+                    start: dateAndTime,
+                    end: dateAndTime,
+                    address: address,
+                    description: description,
+                    allDay: false,
+                    color: '#A7D799',
+                    eventBackgroundColor: '#A7D799'
+
+                }
+            ],
+        });
+    });
 
     //Loads the calendar on to the page
     function loadCalendar() {
-        calendar.fullCalendar('removeEventSources');
-        calendar.fullCalendar('addEventSource', newEventSource);   
 
-        // console.log('loadCalendar', data);
-        
-        calendar.fullCalendar({           
-
+        calendar.fullCalendar({
             events: [
                 {
                     title: "Test",
                     start: "2018-12-25",
                     description: "It's Christmas apparently.",
-                    // color: '#A7D799',
+                    color: '#A7D799'
                     // eventBackgroundColor: '#A7D799'
                 }
             ],
         });
     }
 
-
     loadCalendar();
-
 
 });
