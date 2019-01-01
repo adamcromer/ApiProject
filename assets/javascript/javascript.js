@@ -66,7 +66,7 @@ $(document).ready(function () {
         eventDiv.show();
     });
     closeEvent.click(function () {
-        eventDiv.hide("drop", "slow");
+        eventDiv.hide();
         error.hide();
         clearSubmit();
     });
@@ -82,10 +82,10 @@ $(document).ready(function () {
         $("#description").val("");
     }
 
-    //This minimizes the calendar and shows the event info on the side.
+    // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
         eventInfo.toggle(2000);
-        calendarContainer.toggleClass("smallCal", 500)
+        calendarContainer.toggleClass("smallCal", 500);
     }
 
     eventSubmit.click(function () {
@@ -124,13 +124,11 @@ $(document).ready(function () {
 
     testButton.click(function () {
         event.preventDefault();
-        showEventInfo();
-        
+        showEventInfo();  
     });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
-        console.log("reset");
     });
 
     // function snapshotToArray(snapshot) {
