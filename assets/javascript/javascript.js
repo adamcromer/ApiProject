@@ -66,7 +66,7 @@ $(document).ready(function () {
         eventDiv.show();
     });
     closeEvent.click(function () {
-        eventDiv.hide();
+        eventDiv.hide("drop", "slow");
         error.hide();
         clearSubmit();
     });
@@ -129,6 +129,7 @@ $(document).ready(function () {
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
+        console.log("reset");
     });
 
     // function snapshotToArray(snapshot) {
