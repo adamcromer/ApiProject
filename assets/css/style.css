@@ -55,9 +55,6 @@ body {
     color:white;
     margin-top:0.5vw;
     transition:0.75s;
-}
-
-.nav-link {
     transition-timing-function: ease-in-out;
 }
 
@@ -83,6 +80,7 @@ body {
 
 .smallCal {
     width:66%;
+    transition:10s;
 }
 
 #eventInfo {
@@ -97,8 +95,6 @@ body {
 .blueText {
     color: #222A3F;
 }
-
-
 
 #addNewEvent {
     display:none;
