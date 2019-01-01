@@ -164,18 +164,18 @@ $(document).ready(function () {
     database.ref().on("child_added", function (snapshot) {
         newEventSource = { events: snapshot.val() };
         calendar.fullCalendar();
-        calendar.fullCalendar('addEventSource', newEventSource);   
+        calendar.fullCalendar('addEventSource', newEventSource);
     });
 
 
     //Loads the calendar on to the page
     function loadCalendar() {
         calendar.fullCalendar('removeEventSources');
-        calendar.fullCalendar('addEventSource', newEventSource);   
+        calendar.fullCalendar('addEventSource', newEventSource);
 
         // console.log('loadCalendar', data);
-        
-        calendar.fullCalendar({           
+
+        calendar.fullCalendar({
 
             events: [
                 {
@@ -188,8 +188,6 @@ $(document).ready(function () {
             ],
         });
     }
-
-
     loadCalendar();
 
 
