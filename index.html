@@ -14,7 +14,7 @@
 
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
-    <title>Humaniteer</title>
+    <title>Volunteer Finder</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-6 jumbotron jumbotron-fluid bg-black colors rounded border borderStyle mr-1">
                 <div class="container">
-                    <h1 class="display-4 titleStyle">Humaniteer</h1>
+                    <h1 class="display-4 titleStyle">Volunteer Finder</h1>
                     <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my
                         espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for
                         a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists
@@ -42,6 +42,7 @@
             </div>
         </div>
     </div>
+
     <div class="container colors rounded mapDiv p-3 border h-100">
         <div class="row h-100">
             <div class="col-9">
@@ -50,8 +51,8 @@
             <div class="col-3">
                 <form class="needs-validation pStyle" novalidate id="searchInput">
                     <label for="validationCustom05" class="ml-2 titleStyle"></label>
-                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address"
-                        maxlength="200" required>
+                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address" maxlength="200"
+                        required>
 
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -94,14 +95,11 @@
     </div>
     <div class="container colors rounded calDiv mt-2 border p-3 clearfix">
         <div class="row">
-            <div id="calendarCont" class="float-left">
+            <div>
                 <div>
                     <h4 id="currentTime" class="titleStyle float-left ml-2"></h4>
                     <button class="btn float-right mr-2" id="addEvent">
                         Create New Event
-                    </button>
-                    <button class="btn bg-white float-right mr-2" id="testButton">
-                        Test Button
                     </button>
                 </div>
                 <br><br>
@@ -126,14 +124,9 @@
                 </div>
                 <div id="calendar" class="titleStyle float-left m-2 mt-2 border rounded"></div>
             </div>
-            <div id="eventInfo" class="float-right border rounded">
-                <div id="eventsDayOf">
-                    <h4 id="name" class="pStyle blueText m-1">Cool Name</h4>
-                    <h4 id="title" class="pStyle blueText m-1">Cool Title</h4>
-                    <h4 id="dateAndTime" class="pStyle blueText m-1">January 1st at 7:00 PM</h4>
-                    <h4 id="address" class="pStyle blueText m-1">Cool Place</h4>
-                    <p id="description" class="pStyle blueText m-1">We're gonna help out with this cool thing at the cool place and it's probably gonna be rad so don't miss it.</p>
-                </div>
+            <div>
+
+                <div id="eventsDayOf"></div>
             </div>
         </div>
     </div>
@@ -178,11 +171,11 @@
     <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
         <div class="row">
             <div class="col-6">
-                <h1 class="titleStyle">About us:</h1>
-                <p class="pStyle">Made by <br>Jeremy Atwood, <br>Jeremy Cantwell, <br>& Adam Cromer</p>
+                <h1 class="colors titleStyle">About us:</h1>
+                <p class="colors pStyle">Made by <br>Jeremy Atwood, <br>Jeremy Cantwell, <br>& Adam Cromer</p>
             </div>
             <div class="col-6">
-                <h1 class="titleStyle">Contact us:</h1>
+                <h1 class="colors titleStyle">Contact us:</h1>
             </div>
         </div>
     </div>
