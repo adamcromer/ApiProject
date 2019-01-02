@@ -13,8 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Asap|Marcellus" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+
     <link rel="icon" type="image/png" href="assets/images/icon.png">
-    <title>Humaniteer</title>
+    <title>Volunteer Finder</title>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
         <div class="row">
             <div class="col-6 jumbotron jumbotron-fluid bg-black colors rounded border borderStyle mr-1">
                 <div class="container">
-                    <h1 class="display-4 titleStyle">Humaniteer</h1>
+                    <h1 class="display-4 titleStyle">Volunteer Finder</h1>
                     <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my
                         espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for
                         a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists
@@ -42,6 +43,7 @@
             </div>
         </div>
     </div>
+
     <div class="container colors rounded mapDiv p-3 border h-100">
         <div class="row h-100">
             <div class="col-9">
@@ -50,8 +52,8 @@
             <div class="col-3">
                 <form class="needs-validation pStyle" novalidate id="searchInput">
                     <label for="validationCustom05" class="ml-2 titleStyle"></label>
-                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address"
-                        maxlength="200" required>
+                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address" maxlength="200"
+                        required>
 
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -128,11 +130,11 @@
             </div>
             <div id="eventInfo" class="float-right border rounded">
                 <div id="eventsDayOf">
-                    <h4 id="name" class="pStyle blueText m-1">Cool Name</h4>
-                    <h4 id="title" class="pStyle blueText m-1">Cool Title</h4>
-                    <h4 id="dateAndTime" class="pStyle blueText m-1">January 1st at 7:00 PM</h4>
-                    <h4 id="address" class="pStyle blueText m-1">Cool Place</h4>
-                    <p id="description" class="pStyle blueText m-1">We're gonna help out with this cool thing at the
+                    <h4 id="nameOutput" class="pStyle blueText m-1">Cool Name</h4>
+                    <h4 id="titleOutput" class="pStyle blueText m-1">Cool Title</h4>
+                    <h4 id="dateAndTimeOutput" class="pStyle blueText m-1">January 1st at 7:00 PM</h4>
+                    <h4 id="addressOutput" class="pStyle blueText m-1">Cool Place</h4>
+                    <p id="descriptionOutput" class="pStyle blueText m-1">We're gonna help out with this cool thing at the
                         cool place and it's probably gonna be rad so don't miss it.</p>
                 </div>
             </div>
@@ -147,28 +149,28 @@
         <form class="m-3 pStyle">
             <div class="form-group mt-2">
                 <label>Your Organization Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Event Placeholder">
+                <input type="text" class="form-control" id="nameInput" placeholder="Event Placeholder">
             </div>
             <div class="form-group">
                 <label>Event Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Killer Event">
+                <input type="text" class="form-control" id="titleInput" placeholder="Killer Event">
             </div>
             <div class="form-group float-left">
                 <label>Time</label>
-                <input type="time" class="form-control black" id="time">
+                <input type="time" class="form-control black" id="timeInput">
             </div>
             <div class="form-group float-left ml-5">
                 <label>Date</label>
-                <input type="date" class="form-control" id="date">
+                <input type="date" class="form-control" id="dateInput">
             </div>
             <br><br><br><br>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" class="form-control" id="address" placeholder="Address Placeholder">
+                <input type="text" class="form-control" id="addressInput" placeholder="Address Placeholder">
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control black" id="description" placeholder="Event Description">
+                <input type="text" class="form-control black" id="descriptionInput" placeholder="Event Description">
             </div>
             <button id="eventSubmit" type="submit" class="btn btn-primary">Submit</button>
             <button id="eventReset" class="btn btn-primary ml-3">Reset</button>
@@ -179,17 +181,19 @@
     <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
         <div class="row">
             <div class="col-6">
-                <h1 class="titleStyle">About us:</h1>
-                <p class="pStyle">Made by <br>Jeremy Atwood, <br>Jeremy Cantwell, <br>& Adam Cromer</p>
+                <h1 class="colors titleStyle">About us:</h1>
+                <p class="colors pStyle">Made by <br>Jeremy Atwood, <br>Jeremy Cantwell, <br>& Adam Cromer</p>
             </div>
             <div class="col-6">
-                <h1 class="titleStyle">Contact us:</h1>
+                <h1 class="colors titleStyle">Contact us:</h1>
             </div>
         </div>
     </div>
 
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -198,12 +202,12 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhsV8CCFJxMuiyfocsigyy10b3pCdWG80&libraries=places&callback=initMap">
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/javascript/markerCluster.js"></script>
     <script type="text/javascript" src="assets/javascript/javascript.js"></script>
     <script type="text/javascript" src="assets/javascript/atwood.js"></script>

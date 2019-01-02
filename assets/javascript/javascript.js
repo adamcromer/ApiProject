@@ -66,7 +66,7 @@ $(document).ready(function () {
         eventDiv.show();
     });
     closeEvent.click(function () {
-        eventDiv.hide("drop", "slow");
+        eventDiv.hide();
         error.hide();
         clearSubmit();
     });
@@ -74,12 +74,12 @@ $(document).ready(function () {
 
     //Clears out the inputs
     function clearSubmit() {
-        $("#name").val("");
-        $("#title").val("");
-        $("#address").val("");
-        $("#date").val("");
-        $("#time").val("");
-        $("#description").val("");
+        $("#nameInput").val("");
+        $("#titleInput").val("");
+        $("#addressInput").val("");
+        $("#dateInput").val("");
+        $("#timeInput").val("");
+        $("#descriptionInput").val("");
     }
 
     // This minimizes the calendar and shows the event info on the side.
@@ -93,12 +93,12 @@ $(document).ready(function () {
         console.log("submit");
 
         //Declare variables for the value in the inputs
-        var name = $("#name").val().trim();
-        var title = $("#title").val().trim();
-        var address = $("#address").val().trim();
-        var date = $("#date").val().trim();
-        var time = $("#time").val().trim();
-        var description = $("#description").val().trim();
+        var name = $("#nameInput").val().trim();
+        var title = $("#titleInput").val().trim();
+        var address = $("#addressInput").val().trim();
+        var date = $("#dateInput").val().trim();
+        var time = $("#timeInput").val().trim();
+        var description = $("#descriptionInput").val().trim();
 
         //Shows an error if an input is empty.
         if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
@@ -129,7 +129,6 @@ $(document).ready(function () {
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
-        console.log("reset");
     });
 
     // function snapshotToArray(snapshot) {
