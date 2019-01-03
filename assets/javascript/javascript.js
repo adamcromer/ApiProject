@@ -30,6 +30,7 @@ $(document).ready(function () {
     var eventReset = $("#eventReset");
     var error = $("#error");
     var calendarCont = $("#calendarCont");
+    var fullCalCont = $("#fullCalCont");
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
     var testButton = $("#testButton");
@@ -85,15 +86,15 @@ $(document).ready(function () {
 
     //Function to show eventInfo.
     function shrinkCal() {
-        calendarCont.toggle("drop", { direction: "right" }, "slow");
-        eventInfo.toggle("drop", { direction: "right" }, "slow");
+        fullCalCont.toggle("drop", { direction: "right" }, "slow");
+        eventInfo.toggle();
     }
 
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        calendarCont.toggle("drop", { direction: "left" }, "");        
-        calendarCont.toggleClass("smallCal", 1);
-        emptyCalVar = setTimeout(shrinkCal, 750);
+        fullCalCont.toggle("drop", { direction: "left" }, "slow");        
+        calendarCont.toggleClass("smallCal", 500);
+        emptyCalVar = setTimeout(shrinkCal, 500);
     }
 
     eventSubmit.click(function () {
