@@ -29,8 +29,9 @@ $(document).ready(function () {
     var eventSubmit = $("#eventSubmit");
     var eventReset = $("#eventReset");
     var error = $("#error");
-    var calendarContainer = $("#calendarCont");
-    var eventInfo = $("#eventInfo");    
+    var calendarCont = $("#calendarCont");
+    var emptyCalVar;
+    var eventInfo = $("#eventInfo");
     var testButton = $("#testButton");
 
     //Function to show the current time
@@ -63,10 +64,10 @@ $(document).ready(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
     addEvent.click(function () {
-        eventDiv.show();
+        eventDiv.toggle("drop", { direction: "left" }, "slow");
     });
     closeEvent.click(function () {
-        eventDiv.hide();
+        eventDiv.hide("drop", { direction: "left" }, "slow");
         error.hide();
         clearSubmit();
     });
@@ -82,15 +83,21 @@ $(document).ready(function () {
         $("#descriptionInput").val("");
     }
 
+    //Function to show eventInfo.
+    function shrinkCal() {
+        calendarCont.toggle("drop", { direction: "right" }, "slow");
+        eventInfo.toggle("drop", { direction: "right" }, "slow");
+    }
+
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        eventInfo.toggle(2000);
-        calendarContainer.toggleClass("smallCal", 500);
+        calendarCont.toggle("drop", { direction: "left" }, "");        
+        calendarCont.toggleClass("smallCal", 1);
+        emptyCalVar = setTimeout(shrinkCal, 750);
     }
 
     eventSubmit.click(function () {
         event.preventDefault();
-        console.log("submit");
 
         //Declare variables for the value in the inputs
         var name = $("#nameInput").val().trim();
@@ -118,13 +125,13 @@ $(document).ready(function () {
 
             clearSubmit();
             error.hide();
-            eventDiv.hide();
+            eventDiv.hide("drop", { direction: "right" }, "slow");
         }
     });
 
     testButton.click(function () {
         event.preventDefault();
-        showEventInfo();  
+        showEventInfo();
     });
     eventReset.click(function () {
         event.preventDefault();
@@ -156,10 +163,10 @@ $(document).ready(function () {
         var date = snapshot.val().date;
         var time = snapshot.val().time;
         var dateAndTime = moment(date + " " + time);
-        console.log(dateAndTime.format());
+        // console.log(dateAndTime.format());
         var description = snapshot.val().description;
-        console.log(title);
-        console.log(description);
+        // console.log(title);
+        // console.log(description);
 
         calendar.fullCalendar({
 

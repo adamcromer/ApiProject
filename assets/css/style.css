@@ -54,7 +54,7 @@ body {
     border-color:#222A3F;
     color:white;
     margin-top:0.5vw;
-    transition:0.75s;
+    transition:0.5s;
     transition-timing-function: ease-in-out;
 }
 
@@ -112,6 +112,15 @@ body {
 
 #error {
     display:none;
+}
+
+a {
+    color:#50B076;
+    font-family: 'Marcellus', serif;
+}
+
+a:hover {
+    color:white;
 }
 
 ::-webkit-scrollbar {
