@@ -55,9 +55,6 @@ body {
     color:white;
     margin-top:0.5vw;
     transition:0.75s;
-}
-
-.nav-link {
     transition-timing-function: ease-in-out;
 }
 
@@ -79,6 +76,24 @@ body {
 #calendar {
     background-color:#A7D799;
     color:#222A3F;
+}
+
+.smallCal {
+    width:66%;
+    transition:10s;
+}
+
+#eventInfo {
+    width:33%;
+    margin-top:12vw;
+    margin-bottom:1vw;
+    padding-bottom:0;
+    background-color:#A7D799;
+    display:none;
+}
+
+.blueText {
+    color: #222A3F;
 }
 
 #addNewEvent {

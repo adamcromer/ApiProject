@@ -29,6 +29,9 @@ $(document).ready(function () {
     var eventSubmit = $("#eventSubmit");
     var eventReset = $("#eventReset");
     var error = $("#error");
+    var calendarContainer = $("#calendarCont");
+    var eventInfo = $("#eventInfo");    
+    var testButton = $("#testButton");
 
     //Function to show the current time
     function setCurrentTime() {
@@ -42,24 +45,6 @@ $(document).ready(function () {
     zipSearch.click(function (event) {
         event.preventDefault();
     });
-
-    //Loads the calendar on to the page
-    function loadCalendar() {
-        calendar.fullCalendar({
-
-            
-
-            events: [
-                {
-                    title: "Test",
-                    start: "2018-12-25",
-                    description: "It's Christmas apparently.",
-                    // color: '#A7D799',
-                    // eventBackgroundColor: '#A7D799'
-                }
-            ],
-        });
-    }
 
     //Actions for calendar buttons
     next.click(function () {
@@ -83,28 +68,37 @@ $(document).ready(function () {
     closeEvent.click(function () {
         eventDiv.hide();
         error.hide();
+        clearSubmit();
     });
+    eventDiv.draggable();
 
+    //Clears out the inputs
     function clearSubmit() {
-        //Clears out the inputs
-        $("#name").val("");
-        $("#title").val("");
-        $("#address").val("");
-        $("#date").val("");
-        $("#time").val("");
-        $("#description").val("");
+        $("#nameInput").val("");
+        $("#titleInput").val("");
+        $("#addressInput").val("");
+        $("#dateInput").val("");
+        $("#timeInput").val("");
+        $("#descriptionInput").val("");
+    }
+
+    // This minimizes the calendar and shows the event info on the side.
+    function showEventInfo() {
+        eventInfo.toggle(2000);
+        calendarContainer.toggleClass("smallCal", 500);
     }
 
     eventSubmit.click(function () {
         event.preventDefault();
+        console.log("submit");
 
         //Declare variables for the value in the inputs
-        var name = $("#name").val().trim();
-        var title = $("#title").val().trim();
-        var address = $("#address").val().trim();
-        var date = $("#date").val().trim();
-        var time = $("#time").val().trim();
-        var description = $("#description").val().trim();
+        var name = $("#nameInput").val().trim();
+        var title = $("#titleInput").val().trim();
+        var address = $("#addressInput").val().trim();
+        var date = $("#dateInput").val().trim();
+        var time = $("#timeInput").val().trim();
+        var description = $("#descriptionInput").val().trim();
 
         //Shows an error if an input is empty.
         if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
@@ -116,7 +110,8 @@ $(document).ready(function () {
                 name: name,
                 title: title,
                 address: address,
-                date: date,
+                start: date,
+                end: date,
                 time: time,
                 description: description
             });
@@ -127,13 +122,34 @@ $(document).ready(function () {
         }
     });
 
+    testButton.click(function () {
+        event.preventDefault();
+        showEventInfo();  
+    });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
     });
 
+    // function snapshotToArray(snapshot) {
+    //     var returnArr = [];
+
+    //     snapshot.forEach(function (childSnapshot) {
+    //         var item = childSnapshot.val();
+    //         item.key = childSnapshot.key;
+
+    //         returnArr.push(item);
+    //     });
+
+    //     return returnArr;
+    // };
+
+    // var snapshotArr = snapshotToArray(snapshot);
+    // console.log("firebase", snapshotArr);
+
     database.ref().on("child_added", function (snapshot) {
 
+        data = snapshot.val();
         var name = snapshot.val().name;
         var title = snapshot.val().title;
         var address = snapshot.val().address;
@@ -142,16 +158,17 @@ $(document).ready(function () {
         var dateAndTime = moment(date + " " + time);
         console.log(dateAndTime.format());
         var description = snapshot.val().description;
-        console.log(title)
-        console.log(description)
+        console.log(title);
+        console.log(description);
 
-        $("#calendar").fullCalendar({
+        calendar.fullCalendar({
 
-            event: [
+            events: [
                 {
                     title: title,
                     name: name,
                     start: dateAndTime,
+                    end: dateAndTime,
                     address: address,
                     description: description,
                     allDay: false,
@@ -162,6 +179,22 @@ $(document).ready(function () {
             ],
         });
     });
+
+    //Loads the calendar on to the page
+    function loadCalendar() {
+
+        calendar.fullCalendar({
+            events: [
+                {
+                    title: "Test",
+                    start: "2018-12-25",
+                    description: "It's Christmas apparently.",
+                    color: '#A7D799'
+                    // eventBackgroundColor: '#A7D799'
+                }
+            ],
+        });
+    }
 
     loadCalendar();
 
