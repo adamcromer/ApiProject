@@ -1,6 +1,6 @@
 html {
     background: url(../images/leaves.jpg);
-    background-size: center;
+    background-size: center center;
     background-repeat: no-repeat;
     background-position: fixed;
 }
@@ -9,9 +9,43 @@ body {
     background:transparent;
 }
 
+nav {
+    background-color:#DCE0D9;
+    padding:0;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 1000;
+}
+
+#navLogo,
+#navName {
+    height:3.75vw;
+}
+
+.nav-link {
+    background-color:#A7D799;
+    border-color:#222A3F;
+    color:#222A3F;
+    font-family: 'Marcellus', serif;
+    font-size:1.5vw;
+    float:right;
+    transition:0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.nav-link:hover {    
+    background-color:#222A3F;
+    color:#DCE0D9;    
+}
+
 .jumbotron {
     padding:0;
     margin-right:30vw;
+}
+
+#logoHolder {
+    background-color:#A7D799;
 }
 
 .titleStyle {
@@ -41,26 +75,9 @@ body {
     border-color:white;
 }
 
-.mapDiv {
-    height:45vw;
-}
-
 #map {
     height: 100%;
-}
-
-.nav-link {
-    background-color:#50B076;
-    border-color:#222A3F;
-    color:white;
-    margin-top:0.5vw;
-    transition:0.5s;
-    transition-timing-function: ease-in-out;
-}
-
-.nav-link:hover {
-    background-color:#222A3F;
-    color:#A7D799;
+    height:40vw;
 }
 
 #logoHolder {
@@ -136,7 +153,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #50B076;
+    background: #DCE0D9;
 }
 
 ::selection {

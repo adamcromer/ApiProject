@@ -19,41 +19,36 @@
 </head>
 
 <body>
-    <div class="container rounded mt-2" id="welcome">
-        <div class="row">
-            <div class="col-6 jumbotron jumbotron-fluid bg-black colors rounded border borderStyle mr-1">
-                <div class="container">
-                    <h1 class="display-4 titleStyle">Humaniteer</h1>
-                    <p class="lead pStyle">So you two dig up, dig up dinosaurs? Just my luck, no ice. Is this my
-                        espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for
-                        a lovely weekend. Jaguar shark! So tell me - does it really exist? Yeah, but your scientists
-                        were so preoccupied with whether or not they could, they didn't stop to think if they should.
-                    </p>
-                </div>
-            </div>
-            <div class="col-3 colors rounded border mb-0 mr-5 ml-4" id="logoHolder">
-            </div>
-            <div class="col-2 float-right m-0">
-                <nav class="nav flex-column h-100">
-                    <a class="nav-link border pStyle" href="#welcome">Welcome</a>
-                    <a class="nav-link border" href="#map">Map</a>
-                    <a class="nav-link border" href="#calendar">Calendar</a>
-                    <a class="nav-link border" href="#about">About Us</a>
-                </nav>
-            </div>
+
+    <nav class="nav w-100">
+        <div class="container p-0">
+            <img src="assets/images/navleaf.png" alt="Humaniteer Leaf" id="navLogo">
+            <img src="assets/images/navname.png" alt="Humaniteer" id="navName">
+            <a class="nav-link border" href="#about">About Us</a>
+            <a class="nav-link border" href="#map">Add Event</a>
+            <a class="nav-link border" href="#calendar">Calendar</a>
+            <a class="nav-link border" href="#welcome">Welcome</a>
         </div>
+    </nav>
+
+    <div class="container rounded mt-5 clearfix" id="welcome">
+        <!-- <div class="row"> -->
+        <div class="colors rounded border float-left mb-5 mr-5 ml-4 w-25 h-100" id="logoHolder">
+            <img src="assets/images/logo.png" alt="Humaniteer Logo" class="w-100">
+        </div>
+        <!-- </div> -->
     </div>
 
-    <div class="container colors rounded mapDiv p-3 border h-100">
-        <div class="row h-100">
-            <div class="col-9">
+    <div class="container colors rounded p-3 border">
+        <!-- <div class="row h-100"> -->
+            <!-- <div class="col-9"> -->
                 <div id="map"></div>
-            </div>
-            <div class="col-3">
+            <!-- </div> -->
+            <!-- <div class="col-3">
                 <form class="needs-validation pStyle" novalidate id="searchInput">
                     <label for="validationCustom05" class="ml-2 titleStyle"></label>
-                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address" maxlength="200"
-                        required>
+                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address"
+                        maxlength="200" required>
 
                     <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -91,8 +86,8 @@
                     they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God
                     creates Man. Man destroys God. Man creates Dinosaurs. You're a very talented young man, with your
                     own clever thoughts and ideas. Do you need a manager?</p>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
     </div>
     <div class="container colors rounded calDiv mt-2 border p-3 clearfix" id="fullCalCont">
         <div class="row">
@@ -134,7 +129,8 @@
                     <h4 id="titleOutput" class="pStyle blueText m-1">Cool Title</h4>
                     <h4 id="dateAndTimeOutput" class="pStyle blueText m-1">January 1st at 7:00 PM</h4>
                     <h4 id="addressOutput" class="pStyle blueText m-1">Cool Place</h4>
-                    <p id="descriptionOutput" class="pStyle blueText m-1">We're gonna help out with this cool thing at the
+                    <p id="descriptionOutput" class="pStyle blueText m-1">We're gonna help out with this cool thing at
+                        the
                         cool place and it's probably gonna be rad so don't miss it.</p>
                 </div>
             </div>
@@ -182,7 +178,12 @@
         <div class="row">
             <div class="col-6">
                 <h1 class="titleStyle">About us:</h1>
-                <p class="pStyle">This is a project made by <a href="https://github.com/Jeremy-Atwood" target="_blank">Jeremy Atwood,</a> <a href="https://github.com/welljer" target="_blank">Jeremy Cantwell,</a> <a href="https://github.com/adamcromer" target="_blank">& Adam Cromer.</a>
+                <p class="pStyle">Welcome and thank you for visiting us here at Humaniteer.<br><br>Humaniteer is a site
+                    to find local volunteer oppurtunites near you or to host your own volunteer events to help recruit
+                    fellow volunteers and help make your community a better place.<br><br>This is a project made by <a
+                        href="https://github.com/Jeremy-Atwood" target="_blank">Jeremy Atwood,</a> <a href="https://github.com/welljer"
+                        target="_blank">Jeremy Cantwell,</a> <a href="https://github.com/adamcromer" target="_blank">&
+                        Adam Cromer.</a>
             </div>
             <div class="col-6">
                 <h1 class="titleStyle">Contact us:</h1>
