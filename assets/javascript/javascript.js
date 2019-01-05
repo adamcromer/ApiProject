@@ -174,7 +174,6 @@ $(document).ready(function () {
                     deferred.resolve();
                 } else {
                     deferred.reject();
-                    alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
 
