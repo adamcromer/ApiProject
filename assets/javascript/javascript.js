@@ -73,6 +73,7 @@ $(document).ready(function () {
 
 	ref.once("value", function() {
 		loadCalendar();
+		initMap();
 	  });
 
     //Function to show the current time
@@ -166,10 +167,8 @@ $(document).ready(function () {
             var geoAddress = address;
             geocoder.geocode({ 'address': geoAddress }, function (results, status) {
                 if (status == 'OK') {
-                    console.log(results);
                     latAddress = results[0].geometry.location.lat();
                     lngAddress = results[0].geometry.location.lng();
-                    console.log(latAddress, lngAddress);
                     deferred.resolve();
                 } else {
                     deferred.reject();
@@ -253,8 +252,19 @@ $(document).ready(function () {
             mapTypeId: 'roadmap'
         });
         // Create an array of alphabetical characters used to label the markers.
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		
+		for(var i = 0; i < eventArray.length; i++){
+			if(eventArray[i].lat == undefined){
+				
+			}else{
+				var obj = {
+					lat: eventArray[i].lat,
+					lng: eventArray[i].lng
+				}
+				locations.push(obj);
+			}
+		}
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
@@ -268,6 +278,6 @@ $(document).ready(function () {
         var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
     }
-    initMap();
+    
 
 });
