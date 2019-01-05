@@ -209,39 +209,6 @@ $(document).ready(function () {
         clearSubmit();
     });
 
-    database.ref().on("child_added", function (snapshot) {
-
-        data = snapshot.val();
-        var name = snapshot.val().name;
-        var title = snapshot.val().title;
-        var address = snapshot.val().address;
-        var date = snapshot.val().date;
-        var time = snapshot.val().time;
-        var dateAndTime = moment(date + " " + time);
-        // console.log(dateAndTime.format());
-        var description = snapshot.val().description;
-        // console.log(title);
-        // console.log(description);
-
-        calendar.fullCalendar({
-
-            events: [
-                {
-                    title: snapshot.val().title,
-                    name: name,
-                    start: snapshot.val().time,
-                    end: time,
-                    address: address,
-                    description: snapshot.val().description,
-                    allDay: false,
-                    color: '#A7D799',
-                    eventBackgroundColor: '#A7D799'
-
-                },
-            ],
-        });
-    });
-
     var hardName;
     var hardTitle;
     var hardTime;
