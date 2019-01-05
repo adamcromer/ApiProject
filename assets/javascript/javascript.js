@@ -18,6 +18,7 @@ $(document).ready(function () {
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
+    var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
     var month = $("#monthView");
@@ -32,11 +33,11 @@ $(document).ready(function () {
     var calendarCont = $("#calendarCont");
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
-    var testButton = $("#testButton");
     var welcomeNav = $("#welcomeNav");
-    var mapNav = $("#mapNav");    
+    var mapNav = $("#mapNav");
     var calendarNav = $("#calendarNav")
     var aboutNav = $("#aboutNav");
+    var hasEventBeenClicked = false;
 
     welcomeNav.click(function () {
         welcome.scrollIntoView({
@@ -49,7 +50,7 @@ $(document).ready(function () {
         });
     });
     calendarNav.click(function () {
-        fullCalCont.scrollIntoView({
+        calRow.scrollIntoView({
             behavior: "smooth"
         });
     });
@@ -116,9 +117,13 @@ $(document).ready(function () {
 
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        fullCalCont.toggle("drop", { direction: "left" }, "slow");
-        calendarCont.toggleClass("smallCal", 500);
-        emptyCalVar = setTimeout(shrinkCal, 500);
+
+        if (hasEventBeenClicked === false) {
+            fullCalCont.toggle("drop", { direction: "left" }, "slow");
+            calendarCont.toggleClass("smallCal", 500);
+            emptyCalVar = setTimeout(shrinkCal, 500);
+            hasEventBeenClicked = true;
+        }
     }
 
     eventSubmit.click(function () {
@@ -154,30 +159,10 @@ $(document).ready(function () {
         }
     });
 
-    testButton.click(function () {
-        event.preventDefault();
-        showEventInfo();
-    });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
     });
-
-    // function snapshotToArray(snapshot) {
-    //     var returnArr = [];
-
-    //     snapshot.forEach(function (childSnapshot) {
-    //         var item = childSnapshot.val();
-    //         item.key = childSnapshot.key;
-
-    //         returnArr.push(item);
-    //     });
-
-    //     return returnArr;
-    // };
-
-    // var snapshotArr = snapshotToArray(snapshot);
-    // console.log("firebase", snapshotArr);
 
     database.ref().on("child_added", function (snapshot) {
 
@@ -197,20 +182,50 @@ $(document).ready(function () {
 
             events: [
                 {
-                    title: title,
+                    title: snapshot.val().title,
                     name: name,
-                    start: dateAndTime,
-                    end: dateAndTime,
+                    start: snapshot.val().time,
+                    end: time,
                     address: address,
-                    description: description,
+                    description: snapshot.val().description,
                     allDay: false,
                     color: '#A7D799',
                     eventBackgroundColor: '#A7D799'
 
-                }
+                },
             ],
         });
     });
+
+    var hardName;
+    var hardTitle;
+    var hardTime;
+    var hardDesc;
+    var hardAddress;
+
+    function updateEventText(event) {
+        $("#nameOutput").text(event.name);
+        $("#titleOutput").text(event.title);
+        $("#timeOutput").text(event.start);
+        $("#descriptionOutput").text(event.description);
+        $("#addressOutput").text(event.address);
+    }
+
+    function updateHardInfo(event) {
+        hardName = event.name;
+        hardTitle = event.title;
+        hardTime = event.start;
+        hardDesc = event.description;
+        hardAddress = event.address;
+    }
+
+    function showHardInfo(event) {
+        $("#nameOutput").text(hardName);
+        $("#titleOutput").text(hardTitle);
+        $("#timeOutput").text(hardTime);
+        $("#descriptionOutput").text(hardDesc);
+        $("#addressOutput").text(hardAddress);
+    }
 
     //Loads the calendar on to the page
     function loadCalendar() {
@@ -219,12 +234,41 @@ $(document).ready(function () {
             events: [
                 {
                     title: "Test",
-                    start: "2018-12-25",
-                    description: "It's Christmas apparently.",
-                    color: '#A7D799'
+                    start: "2019-1-25",
+                    description: "It's a test apparently.",
+                    color: '#A7D799',
+                    address: 'The Test Place',
+                    name: 'Vol Test'
                     // eventBackgroundColor: '#A7D799'
-                }
+                },
+
+                {
+                    title: "Test2",
+                    start: "2019-1-10",
+                    description: "It's a second test!",
+                    color: '#A7D799',
+                    address: 'The Other Test Place',
+                    name: 'Testing 2'
+                },
             ],
+
+            eventClick: function (event) {
+
+                updateEventText(event);
+                showEventInfo();
+                updateHardInfo(event);
+                $(this).css("backgroundcolor", "#222A3F");
+            },
+
+            eventMouseover: function (event) {
+
+                updateEventText(event);
+                showEventInfo();
+            },
+
+            eventMouseout: function (event) {
+                showHardInfo(event);
+            }
         });
     }
 

@@ -27,20 +27,46 @@
             <a class="nav-link border" id="aboutNav">About Us</a>
             <a class="nav-link border" id="mapNav">Add Event</a>
             <a class="nav-link border" id="calendarNav">Calendar</a>
-            <a class="nav-link border" id="welcomeNav
-            ">Welcome</a>
+            <a class="nav-link border" id="welcomeNav">Welcome</a>
         </div>
     </nav>
 
-    <div class="container rounded mt-5 clearfix" id="welcome">
+    <!-- <div class="container rounded mt-5 clearfix" id="welcome">
         <!-- <div class="row"> -->
-        <div class="colors rounded border float-left mb-5 mr-5 ml-4 w-25 h-100" id="logoHolder">
-            <img src="assets/images/logo.png" alt="Humaniteer Logo" class="w-100">
+    <!-- <div class="colors rounded border float-left mb-5 mr-5 ml-4 w-25 h-100" id="logoHolder"> -->
+
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> --> -->
+
+    <div class="container colors mt-5 rounded border p-3" id="welcome">
+        <div class="row">
+            <div id="getStarted" class="jumbotron colors p-3 col-8 m-0">
+                <h1 class="display-4 titleStyle text-center">Get Started</h1>
+                <p class="lead pStyle text-center">Welcome and thank you for visiting us here at Humaniteer.<br><br>
+                    Humaniteer is a site to find local volunteer oppurtunites near you or to host your own volunteer
+                    events to help recruit fellow volunteers and help make your community a better place.</p>
+            </div>
+            <div class="colors col-3 ml-5">
+                <img src="assets/images/logo.png" alt="Humaniteer Logo" class="w-100 rounded border" id="logoHolder">
+            </div>
         </div>
-        <!-- </div> -->
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <hr class="my-4">
+                <p class="pStyle text-center">Get started by viewing events on the map, calendar, or add your own volunteer
+                    event.</p>
+                <p class="lead justify-center" id="welcomeView">
+                    <a class="btn btn-primary btn-lg mx-aut" href="#" role="button">View on Calendar</a>
+                    <a class="btn btn-primary btn-lg mx-auto" href="#" role="button">View on Map</a>
+                    <a class="btn btn-primary btn-lg mx-auto" href="#" role="button">Add Your Event</a>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="container colors rounded p-3 border">
+    <div class="container colors rounded p-3 mt-4 border">
         <!-- <div class="row h-100"> -->
         <!-- <div class="col-9"> -->
         <div id="map"></div>
@@ -90,16 +116,13 @@
             </div> -->
         <!-- </div> -->
     </div>
-    <div class="container colors rounded calDiv mt-5 border p-3 clearfix" id="fullCalCont">
-        <div class="row">
+    <div class="container colors rounded calDiv mt-4 border p-3 clearfix calendar" id="fullCalCont">
+        <div class="row" id="calRow">
             <div id="calendarCont" class="float-left">
                 <div>
                     <h4 id="currentTime" class="titleStyle float-left ml-2"></h4>
                     <button class="btn float-right mr-2" id="addEvent">
                         Create New Event
-                    </button>
-                    <button class="btn bg-white float-right mr-2" id="testButton">
-                        Test Button
                     </button>
                 </div>
                 <br><br>
@@ -175,22 +198,25 @@
                 Please try again.</p>
         </form>
     </div>
-    <div class="container colors rounded aboutDiv mt-5 mb-5 border p-5" id="about">
+    <div class="container colors rounded aboutDiv mt-4 mb-3 border p-5" id="about">
         <div class="row">
             <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-8 lead">
                 <h1 class="titleStyle">About Humaniteer:</h1>
-                <p class="pStyle mt-2">Welcome and thank you for visiting us here at Humaniteer.<br><br>Humaniteer is a site
+                <p class="pStyle mt-2">Welcome and thank you for visiting us here at Humaniteer.<br><br>Humaniteer is a
+                    site
                     to find local volunteer oppurtunites near you or to host your own volunteer events to help recruit
                     fellow volunteers and help make your community a better place.<br><br>This is a project made by <a
                         href="https://github.com/Jeremy-Atwood" target="_blank">Jeremy Atwood,</a> <a href="https://github.com/welljer"
                         target="_blank">Jeremy Cantwell,</a> <a href="https://github.com/adamcromer" target="_blank">&
-                        Adam Cromer.</a>
+                        Adam Cromer.</a><br><br>
+                    <hr class="my-4">
             </div>
         </div>
-        <div class="row mt-5">
+
+        <div class="row mt-3">
             <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-8 lead">
                 <h1 class="titleStyle">Contact us:</h1>
                 <p class="pStyle mt-2">Please send an email to: </p>
                 <a href="mailto:humaniteerslc@gmail.com"> HumaniteerSLC@gmail.com</a>

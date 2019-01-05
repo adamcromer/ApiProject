@@ -41,13 +41,22 @@ nav {
     color:#DCE0D9;    
 }
 
+hr {
+    background-color:#A7D799;
+}
+
 .jumbotron {
     padding:0;
     margin-right:30vw;
 }
 
 #logoHolder {
-    background-color:#A7D799;
+    background-color:#DCE0D9;
+    margin-top:5vw;
+}
+
+#welcomeView {
+    margin-left:12%;
 }
 
 .titleStyle {
@@ -80,10 +89,6 @@ nav {
 #map {
     height: 100%;
     height:40vw;
-}
-
-#logoHolder {
-    height:16vw;
 }
 
 #logo {
