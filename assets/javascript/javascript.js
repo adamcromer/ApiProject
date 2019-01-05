@@ -167,10 +167,8 @@ $(document).ready(function () {
             var geoAddress = address;
             geocoder.geocode({ 'address': geoAddress }, function (results, status) {
                 if (status == 'OK') {
-                    console.log(results);
                     latAddress = results[0].geometry.location.lat();
                     lngAddress = results[0].geometry.location.lng();
-                    console.log(latAddress, lngAddress);
                     deferred.resolve();
                 } else {
                     deferred.reject();
@@ -256,7 +254,6 @@ $(document).ready(function () {
         // Create an array of alphabetical characters used to label the markers.
 		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		
-		//console.log(eventArray);
 		for(var i = 0; i < eventArray.length; i++){
 			if(eventArray[i].lat == undefined){
 				
@@ -268,8 +265,6 @@ $(document).ready(function () {
 				locations.push(obj);
 			}
 		}
-		console.log(locations);
-
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
