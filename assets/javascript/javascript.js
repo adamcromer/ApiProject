@@ -12,12 +12,13 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
     var database = firebase.database();
-
+	var ref = database.ref();
     //Declaring variables equal to their HTML counterparts
     var zipSearch = $("#zipSearch");
-    var calendar = $('#calendar');
     var currentTime = $("#currentTime");
     var emptyTimeVar;
+    var calendar = $('#calendar');
+    var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
     var month = $("#monthView");
@@ -30,14 +31,49 @@ $(document).ready(function () {
     var eventReset = $("#eventReset");
     var error = $("#error");
     var calendarCont = $("#calendarCont");
-    var fullCalCont = $("#fullCalCont");
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
+    var welcomeNav = $("#welcomeNav");
+    var mapNav = $("#mapNav");
+    var calendarNav = $("#calendarNav")
+    var aboutNav = $("#aboutNav");
+    var hasEventBeenClicked = false;
+
+    welcomeNav.click(function () {
+        welcome.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    mapNav.click(function () {
+        map.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    calendarNav.click(function () {
+        calRow.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    aboutNav.click(function () {
+        about.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
     var testButton = $("#testButton");
     var geocoder;
     geocoder = new google.maps.Geocoder();
     var locations = [];
-    var markers = [];
+	var markers = [];
+	
+	var eventArray = [];
+
+	ref.on("child_added", function (snapshot) {
+		eventArray.push(snapshot.val());
+	});
+
+	ref.once("value", function() {
+		loadCalendar();
+	  });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -96,9 +132,13 @@ $(document).ready(function () {
 
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        fullCalCont.toggle("drop", { direction: "left" }, "slow");
-        calendarCont.toggleClass("smallCal", 500);
-        emptyCalVar = setTimeout(shrinkCal, 500);
+
+        if (hasEventBeenClicked === false) {
+            fullCalCont.toggle("drop", { direction: "left" }, "slow");
+            calendarCont.toggleClass("smallCal", 500);
+            emptyCalVar = setTimeout(shrinkCal, 500);
+            hasEventBeenClicked = true;
+        }
     }
 
     eventSubmit.click(function () {
@@ -162,87 +202,49 @@ $(document).ready(function () {
         }
 
         $.when(deferred).then(databasePush);
-
-
     });
 
-
-    testButton.click(function () {
-        event.preventDefault();
-        showEventInfo();
-    });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
     });
 
-    // function snapshotToArray(snapshot) {
-    //     var returnArr = [];
+    var hardName;
+    var hardTitle;
+    var hardTime;
+    var hardDesc;
+    var hardAddress;
 
-    //     snapshot.forEach(function (childSnapshot) {
-    //         var item = childSnapshot.val();
-    //         item.key = childSnapshot.key;
+    function updateEventText(event) {
+        $("#nameOutput").text(event.name);
+        $("#titleOutput").text(event.title);
+        $("#timeOutput").text(event.start);
+        $("#descriptionOutput").text(event.description);
+        $("#addressOutput").text(event.address);
+    }
 
-    //         returnArr.push(item);
-    //     });
+    function updateHardInfo(event) {
+        hardName = event.name;
+        hardTitle = event.title;
+        hardTime = event.start;
+        hardDesc = event.description;
+        hardAddress = event.address;
+    }
 
-    //     return returnArr;
-    // };
-
-    // var snapshotArr = snapshotToArray(snapshot);
-    // console.log("firebase", snapshotArr);
-
-    database.ref().on("child_added", function (snapshot) {
-
-        data = snapshot.val();
-        var name = snapshot.val().name;
-        var title = snapshot.val().title;
-        var address = snapshot.val().address;
-        var date = snapshot.val().date;
-        var time = snapshot.val().time;
-        var dateAndTime = moment(date + " " + time);
-        // console.log(dateAndTime.format());
-        var description = snapshot.val().description;
-        // console.log(title);
-        // console.log(description);
-
-
-        calendar.fullCalendar({
-
-            events: [
-                {
-                    title: title,
-                    name: name,
-                    start: dateAndTime,
-                    end: dateAndTime,
-                    address: address,
-                    description: description,
-                    allDay: false,
-                    color: '#A7D799',
-                    eventBackgroundColor: '#A7D799'
-
-                }
-            ],
-        });
-    });
+    function showHardInfo(event) {
+        $("#nameOutput").text(hardName);
+        $("#titleOutput").text(hardTitle);
+        $("#timeOutput").text(hardTime);
+        $("#descriptionOutput").text(hardDesc);
+        $("#addressOutput").text(hardAddress);
+    }
 
     //Loads the calendar on to the page
     function loadCalendar() {
-
         calendar.fullCalendar({
-            events: [
-                {
-                    title: "Test",
-                    start: "2018-12-25",
-                    description: "It's Christmas apparently.",
-                    color: '#A7D799'
-                    // eventBackgroundColor: '#A7D799'
-                }
-            ],
+            events: eventArray,
         });
     }
-
-    loadCalendar();
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
