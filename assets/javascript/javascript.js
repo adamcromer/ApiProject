@@ -243,6 +243,7 @@ $(document).ready(function () {
     function loadCalendar() {
         calendar.fullCalendar({
             events: eventArray,
+            color: '#A7D799';
         });
     }
 
