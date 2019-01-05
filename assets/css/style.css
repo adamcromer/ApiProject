@@ -56,7 +56,11 @@ hr {
 }
 
 #welcomeView {
-    margin-left:12%;
+    margin-left:20%;
+}
+
+#welcome {
+    margin-top:7vw;
 }
 
 .titleStyle {
@@ -80,15 +84,17 @@ hr {
     margin-top:0.25vw;
 }
 
-.btn:hover {
+.btn:hover,
+.nav-link:hover {
     background-color:#222A3F;
     color:#A7D799;
     border-color:white;
 }
 
 #map {
-    height: 100%;
+    height:100%;
     height:40vw;
+    display:none;
 }
 
 #logo {
@@ -165,4 +171,14 @@ a:hover {
 
 ::selection {
     background: #A7D799;
+}
+
+@media screen and (min-width: 1025px) {
+    #navLogoHolder,
+    #navLinkHolder {
+        float:left;
+    }
+    #welcome {
+        margin-top:7.5vw;
+    }
 }
