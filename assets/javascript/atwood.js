@@ -1,5 +1,28 @@
 $(document).ready(function () {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBtyqihgVGOF1xetV3zTOFbgSBR17ZU4Kg",
+        authDomain: "apiproject-85c1f.firebaseapp.com",
+        databaseURL: "https://apiproject-85c1f.firebaseio.com",
+        projectId: "apiproject-85c1f",
+        storageBucket: "apiproject-85c1f.appspot.com",
+        messagingSenderId: "410963970652"
+    };
+
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
     var locations = [];
+
+    database.ref().on("child_added", function (snapshot) {
+        var address = snapshot.address.val();
+        locations.push(address);
+        console.log("addresses: " + address);
+    });
+    console.log("hello");
+    console.log("addresses: " + address);
+    console.log("locations: " + locations);
+
 
     function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
