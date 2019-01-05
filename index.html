@@ -19,27 +19,22 @@
 </head>
 
 <body>
-
     <nav class="nav w-100 border" id="navBar">
         <div class="container p-0">
-            <img src="assets/images/navleaf.png" alt="Humaniteer Leaf" id="navLogo">
-            <img src="assets/images/navname.png" alt="Humaniteer" id="navName">
-            <a class="nav-link border" id="aboutNav">About Us</a>
-            <a class="nav-link border" id="mapNav">Add Event</a>
-            <a class="nav-link border" id="calendarNav">Calendar</a>
-            <a class="nav-link border" id="welcomeNav">Welcome</a>
+            <div id="navLogoHolder" class="float-left">
+                <img src="assets/images/navleaf.png" alt="Humaniteer Leaf" id="navLogo">
+                <img src="assets/images/navname.png" alt="Humaniteer" id="navName">
+            </div>
+            <div id="navLinkHolder" class="float-right clearfix">
+                <a class="nav-link border" id="aboutNav">About Us</a>
+                <a class="nav-link border addEvent">Add Event</a>
+                <a class="nav-link border calendarNav">Calendar</a>
+                <a class="nav-link border" id="welcomeNav">Welcome</a>
+            </div>
         </div>
     </nav>
 
-    <!-- <div class="container rounded mt-5 clearfix" id="welcome">
-        <!-- <div class="row"> -->
-    <!-- <div class="colors rounded border float-left mb-5 mr-5 ml-4 w-25 h-100" id="logoHolder"> -->
-
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> --> -->
-
-    <div class="container colors mt-5 rounded border p-3" id="welcome">
+    <div class="container colors rounded border p-3" id="welcome">
         <div class="row">
             <div id="getStarted" class="jumbotron colors p-3 col-8 m-0">
                 <h1 class="display-4 titleStyle text-center">Get Started</h1>
@@ -55,75 +50,22 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <hr class="my-4">
-                <p class="pStyle text-center">Get started by viewing events on the map, calendar, or add your own volunteer
-                    event.</p>
-                <p class="lead justify-center" id="welcomeView">
-                    <a class="btn btn-primary btn-lg mx-aut" href="#" role="button">View on Calendar</a>
-                    <a class="btn btn-primary btn-lg mx-auto" href="#" role="button">View on Map</a>
-                    <a class="btn btn-primary btn-lg mx-auto" href="#" role="button">Add Your Event</a>
+                <p class="pStyle text-center">Get started by viewing events on the map, calendar, or add your own
+                    volunteer event.</p>
+                <p class="lead" id="welcomeView">
+                    <a class="btn btn-primary btn-lg float-left calendarNav" role="button">View on Calendar</a>
+                    <h4 class="float-left pStyle mt-2 ml-4 mr-4"> or </h4>
+                    <a class="btn btn-primary btn-lg float-left addEvent" role="button">Add Your Event</a>
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="container colors rounded p-3 mt-4 border">
-        <!-- <div class="row h-100"> -->
-        <!-- <div class="col-9"> -->
-        <div id="map"></div>
-        <!-- </div> -->
-        <!-- <div class="col-3">
-                <form class="needs-validation pStyle" novalidate id="searchInput">
-                    <label for="validationCustom05" class="ml-2 titleStyle"></label>
-                    <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address"
-                        maxlength="200" required>
-
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Default checkbox
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                            Test checkbox
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                            Test checkbox
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                            Test checkbox
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                            Test checkbox
-                        </label>
-                    </div>
-                    <button class="btn btn-primary mt-3" type="submit" id="zipSearch">Search Address</button>
-                </form>
-                <p class="mt-4 pStyle">Yeah, but your scientists were so preoccupied with whether or not they could,
-                    they didn't stop to think if they should. God creates dinosaurs. God destroys dinosaurs. God
-                    creates Man. Man destroys God. Man creates Dinosaurs. You're a very talented young man, with your
-                    own clever thoughts and ideas. Do you need a manager?</p>
-            </div> -->
-        <!-- </div> -->
-    </div>
     <div class="container colors rounded calDiv mt-4 border p-3 clearfix calendar" id="fullCalCont">
         <div class="row" id="calRow">
             <div id="calendarCont" class="float-left">
                 <div>
                     <h4 id="currentTime" class="titleStyle float-left ml-2"></h4>
-                    <button class="btn float-right mr-2" id="addEvent">
-                        Create New Event
-                    </button>
                 </div>
                 <br><br>
                 <div id="dateSwitch" class="float-left ml-2">
@@ -158,6 +100,9 @@
                         cool place and it's probably gonna be rad so don't miss it.</p>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <div id="map" class="mt-2"></div>
         </div>
     </div>
     <div class="rounded colors border" id="addNewEvent">
@@ -224,7 +169,6 @@
         </div>
     </div>
 
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 
@@ -244,7 +188,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/javascript/markerCluster.js"></script>
     <script type="text/javascript" src="assets/javascript/javascript.js"></script>
-    <!-- <script type="text/javascript" src="assets/javascript/atwood.js"></script> -->
 
 </body>
 
