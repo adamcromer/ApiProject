@@ -12,19 +12,21 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
     var database = firebase.database();
-	var ref = database.ref();
+    var ref = database.ref();
+
     //Declaring variables equal to their HTML counterparts
     var zipSearch = $("#zipSearch");
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
+    var map = $("#map");
     var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
     var month = $("#monthView");
     var week = $("#weekView");
     var day = $("#dayView");
-    var addEvent = $("#addEvent");
+    var addEvent = $(".addEvent");
     var eventDiv = $("#addNewEvent");
     var closeEvent = $("#closeEvent");
     var eventSubmit = $("#eventSubmit");
@@ -35,7 +37,7 @@ $(document).ready(function () {
     var eventInfo = $("#eventInfo");
     var welcomeNav = $("#welcomeNav");
     var mapNav = $("#mapNav");
-    var calendarNav = $("#calendarNav")
+    var calendarNav = $(".calendarNav")
     var aboutNav = $("#aboutNav");
     var hasEventBeenClicked = false;
 
@@ -59,21 +61,20 @@ $(document).ready(function () {
             behavior: "smooth"
         });
     });
-    var testButton = $("#testButton");
+
     var geocoder;
     geocoder = new google.maps.Geocoder();
     var locations = [];
-	var markers = [];
-	
-	var eventArray = [];
+    var markers = [];
+    var eventArray = [];
 
-	ref.on("child_added", function (snapshot) {
-		eventArray.push(snapshot.val());
-	});
+    ref.on("child_added", function (snapshot) {
+        eventArray.push(snapshot.val());
+    });
 
-	ref.once("value", function() {
-		loadCalendar();
-	  });
+    ref.once("value", function () {
+        loadCalendar();
+    });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -128,6 +129,7 @@ $(document).ready(function () {
     function shrinkCal() {
         fullCalCont.toggle("drop", { direction: "right" }, "slow");
         eventInfo.toggle();
+        map.toggle();
     }
 
     // This minimizes the calendar and shows the event info on the side.
@@ -174,7 +176,6 @@ $(document).ready(function () {
                 } else {
                     deferred.reject();
                     alert('Geocode was not successful for the following reason: ' + status);
-
                 }
             });
 
@@ -194,7 +195,6 @@ $(document).ready(function () {
                 time: time,
                 description: description
             });
-
 
             clearSubmit();
             error.hide();
@@ -243,7 +243,19 @@ $(document).ready(function () {
     function loadCalendar() {
         calendar.fullCalendar({
             events: eventArray,
-            color: '#A7D799';
+            eventColor: '#A7D799',
+            eventClick: function (event) {
+                        updateHardInfo(event),
+                        updateEventText(event),
+                        showEventInfo()
+                    },
+                    eventMouseover: function (event) {
+                        updateEventText(event),
+                        showEventInfo()
+                    },
+                    eventMouseout: function (event) {
+                        showHardInfo(event)
+                    }
         });
     }
 
