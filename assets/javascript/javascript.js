@@ -47,6 +47,7 @@ $(document).ready(function () {
 
 	ref.once("value", function() {
 		loadCalendar();
+		initMap();
 	  });
 
     //Function to show the current time
@@ -198,7 +199,21 @@ $(document).ready(function () {
             mapTypeId: 'roadmap'
         });
         // Create an array of alphabetical characters used to label the markers.
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		
+		//console.log(eventArray);
+		for(var i = 0; i < eventArray.length; i++){
+			if(eventArray[i].lat == undefined){
+				
+			}else{
+				var obj = {
+					lat: eventArray[i].lat,
+					lng: eventArray[i].lng
+				}
+				locations.push(obj);
+			}
+		}
+		console.log(locations);
 
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
@@ -213,6 +228,6 @@ $(document).ready(function () {
         var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
     }
-    initMap();
+    
 
 });
