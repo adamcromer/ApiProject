@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
     var database = firebase.database();
-
+	var ref = database.ref();
     //Declaring variables equal to their HTML counterparts
     var zipSearch = $("#zipSearch");
     var currentTime = $("#currentTime");
@@ -59,6 +59,21 @@ $(document).ready(function () {
             behavior: "smooth"
         });
     });
+    var testButton = $("#testButton");
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+    var locations = [];
+	var markers = [];
+	
+	var eventArray = [];
+
+	ref.on("child_added", function (snapshot) {
+		eventArray.push(snapshot.val());
+	});
+
+	ref.once("value", function() {
+		loadCalendar();
+	  });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -136,27 +151,57 @@ $(document).ready(function () {
         var date = $("#dateInput").val().trim();
         var time = $("#timeInput").val().trim();
         var description = $("#descriptionInput").val().trim();
+        var latAddress;
+        var lngAddress;
 
         //Shows an error if an input is empty.
         if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
             error.show();
         }
-        else {
+
+        var deferred = new jQuery.Deferred();
+
+        codeAddress();
+        function codeAddress() {
+            var geoAddress = address;
+            geocoder.geocode({ 'address': geoAddress }, function (results, status) {
+                if (status == 'OK') {
+                    console.log(results);
+                    latAddress = results[0].geometry.location.lat();
+                    lngAddress = results[0].geometry.location.lng();
+                    console.log(latAddress, lngAddress);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    alert('Geocode was not successful for the following reason: ' + status);
+
+                }
+            });
+
+            return deferred.promise;
+        }
+
+        function databasePush() {
             //Pushes the values to Firebase
             database.ref().push({
                 name: name,
                 title: title,
                 address: address,
+                lat: latAddress,
+                lng: lngAddress,
                 start: date,
                 end: date,
                 time: time,
                 description: description
             });
 
+
             clearSubmit();
             error.hide();
             eventDiv.hide("drop", { direction: "right" }, "slow");
         }
+
+        $.when(deferred).then(databasePush);
     });
 
     eventReset.click(function () {
@@ -229,49 +274,33 @@ $(document).ready(function () {
 
     //Loads the calendar on to the page
     function loadCalendar() {
-
         calendar.fullCalendar({
-            events: [
-                {
-                    title: "Test",
-                    start: "2019-1-25",
-                    description: "It's a test apparently.",
-                    color: '#A7D799',
-                    address: 'The Test Place',
-                    name: 'Vol Test'
-                    // eventBackgroundColor: '#A7D799'
-                },
-
-                {
-                    title: "Test2",
-                    start: "2019-1-10",
-                    description: "It's a second test!",
-                    color: '#A7D799',
-                    address: 'The Other Test Place',
-                    name: 'Testing 2'
-                },
-            ],
-
-            eventClick: function (event) {
-
-                updateEventText(event);
-                showEventInfo();
-                updateHardInfo(event);
-                $(this).css("backgroundcolor", "#222A3F");
-            },
-
-            eventMouseover: function (event) {
-
-                updateEventText(event);
-                showEventInfo();
-            },
-
-            eventMouseout: function (event) {
-                showHardInfo(event);
-            }
+            events: eventArray,
         });
     }
 
-    loadCalendar();
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 40.635679, lng: -111.905296 },
+            zoom: 10,
+            mapTypeId: 'roadmap'
+        });
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function (location, i) {
+            return new google.maps.Marker({
+                position: location,
+                label: labels[i % labels.length]
+            });
+        });
+        var markerCluster = new MarkerClusterer(map, markers,
+            { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+    }
+    initMap();
 
 });
