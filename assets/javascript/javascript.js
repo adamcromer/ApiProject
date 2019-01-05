@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
     var database = firebase.database();
-
+	var ref = database.ref();
     //Declaring variables equal to their HTML counterparts
     var zipSearch = $("#zipSearch");
     var calendar = $('#calendar');
@@ -37,7 +37,17 @@ $(document).ready(function () {
     var geocoder;
     geocoder = new google.maps.Geocoder();
     var locations = [];
-    var markers = [];
+	var markers = [];
+	
+	var eventArray = [];
+
+	ref.on("child_added", function (snapshot) {
+		eventArray.push(snapshot.val());
+	});
+
+	ref.once("value", function() {
+		loadCalendar();
+	  });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -162,8 +172,6 @@ $(document).ready(function () {
         }
 
         $.when(deferred).then(databasePush);
-
-
     });
 
 
@@ -176,73 +184,12 @@ $(document).ready(function () {
         clearSubmit();
     });
 
-    // function snapshotToArray(snapshot) {
-    //     var returnArr = [];
-
-    //     snapshot.forEach(function (childSnapshot) {
-    //         var item = childSnapshot.val();
-    //         item.key = childSnapshot.key;
-
-    //         returnArr.push(item);
-    //     });
-
-    //     return returnArr;
-    // };
-
-    // var snapshotArr = snapshotToArray(snapshot);
-    // console.log("firebase", snapshotArr);
-
-    database.ref().on("child_added", function (snapshot) {
-
-        data = snapshot.val();
-        var name = snapshot.val().name;
-        var title = snapshot.val().title;
-        var address = snapshot.val().address;
-        var date = snapshot.val().date;
-        var time = snapshot.val().time;
-        var dateAndTime = moment(date + " " + time);
-        // console.log(dateAndTime.format());
-        var description = snapshot.val().description;
-        // console.log(title);
-        // console.log(description);
-
-
-        calendar.fullCalendar({
-
-            events: [
-                {
-                    title: title,
-                    name: name,
-                    start: dateAndTime,
-                    end: dateAndTime,
-                    address: address,
-                    description: description,
-                    allDay: false,
-                    color: '#A7D799',
-                    eventBackgroundColor: '#A7D799'
-
-                }
-            ],
-        });
-    });
-
     //Loads the calendar on to the page
     function loadCalendar() {
-
         calendar.fullCalendar({
-            events: [
-                {
-                    title: "Test",
-                    start: "2018-12-25",
-                    description: "It's Christmas apparently.",
-                    color: '#A7D799'
-                    // eventBackgroundColor: '#A7D799'
-                }
-            ],
+            events: eventArray,
         });
     }
-
-    loadCalendar();
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
