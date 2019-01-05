@@ -19,7 +19,7 @@ $(document).ready(function () {
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
-    var map = $("#map");
+    var mapCont = $("#mapCont");
     var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
@@ -130,7 +130,7 @@ $(document).ready(function () {
     function shrinkCal() {
         fullCalCont.toggle("drop", { direction: "right" }, "slow");
         eventInfo.toggle();
-        map.toggle();
+        mapCont.toggle();
     }
 
     // This minimizes the calendar and shows the event info on the side.
