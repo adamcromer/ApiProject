@@ -29,6 +29,11 @@ $(document).ready(function () {
     var eventSubmit = $("#eventSubmit");
     var eventReset = $("#eventReset");
     var error = $("#error");
+    var calendarCont = $("#calendarCont");
+    var fullCalCont = $("#fullCalCont");
+    var emptyCalVar;
+    var eventInfo = $("#eventInfo");
+    var testButton = $("#testButton");
 
     //Function to show the current time
     function setCurrentTime() {
@@ -42,24 +47,6 @@ $(document).ready(function () {
     zipSearch.click(function (event) {
         event.preventDefault();
     });
-
-    //Loads the calendar on to the page
-    function loadCalendar() {
-        calendar.fullCalendar({
-
-            
-
-            events: [
-                {
-                    title: "Test",
-                    start: "2018-12-25",
-                    description: "It's Christmas apparently.",
-                    // color: '#A7D799',
-                    // eventBackgroundColor: '#A7D799'
-                }
-            ],
-        });
-    }
 
     //Actions for calendar buttons
     next.click(function () {
@@ -78,33 +65,48 @@ $(document).ready(function () {
         calendar.fullCalendar('changeView', 'agendaDay');
     });
     addEvent.click(function () {
-        eventDiv.show();
+        eventDiv.toggle("drop", { direction: "left" }, "slow");
     });
     closeEvent.click(function () {
-        eventDiv.hide();
+        eventDiv.hide("drop", { direction: "left" }, "slow");
         error.hide();
+        clearSubmit();
     });
+    eventDiv.draggable();
 
+    //Clears out the inputs
     function clearSubmit() {
-        //Clears out the inputs
-        $("#name").val("");
-        $("#title").val("");
-        $("#address").val("");
-        $("#date").val("");
-        $("#time").val("");
-        $("#description").val("");
+        $("#nameInput").val("");
+        $("#titleInput").val("");
+        $("#addressInput").val("");
+        $("#dateInput").val("");
+        $("#timeInput").val("");
+        $("#descriptionInput").val("");
+    }
+
+    //Function to show eventInfo.
+    function shrinkCal() {
+        fullCalCont.toggle("drop", { direction: "right" }, "slow");
+        eventInfo.toggle();
+    }
+
+    // This minimizes the calendar and shows the event info on the side.
+    function showEventInfo() {
+        fullCalCont.toggle("drop", { direction: "left" }, "slow");        
+        calendarCont.toggleClass("smallCal", 500);
+        emptyCalVar = setTimeout(shrinkCal, 500);
     }
 
     eventSubmit.click(function () {
         event.preventDefault();
 
         //Declare variables for the value in the inputs
-        var name = $("#name").val().trim();
-        var title = $("#title").val().trim();
-        var address = $("#address").val().trim();
-        var date = $("#date").val().trim();
-        var time = $("#time").val().trim();
-        var description = $("#description").val().trim();
+        var name = $("#nameInput").val().trim();
+        var title = $("#titleInput").val().trim();
+        var address = $("#addressInput").val().trim();
+        var date = $("#dateInput").val().trim();
+        var time = $("#timeInput").val().trim();
+        var description = $("#descriptionInput").val().trim();
 
         //Shows an error if an input is empty.
         if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
@@ -116,42 +118,65 @@ $(document).ready(function () {
                 name: name,
                 title: title,
                 address: address,
-                date: date,
+                start: date,
+                end: date,
                 time: time,
                 description: description
             });
 
             clearSubmit();
             error.hide();
-            eventDiv.hide();
+            eventDiv.hide("drop", { direction: "right" }, "slow");
         }
     });
 
+    testButton.click(function () {
+        event.preventDefault();
+        showEventInfo();
+    });
     eventReset.click(function () {
         event.preventDefault();
         clearSubmit();
     });
 
+    // function snapshotToArray(snapshot) {
+    //     var returnArr = [];
+
+    //     snapshot.forEach(function (childSnapshot) {
+    //         var item = childSnapshot.val();
+    //         item.key = childSnapshot.key;
+
+    //         returnArr.push(item);
+    //     });
+
+    //     return returnArr;
+    // };
+
+    // var snapshotArr = snapshotToArray(snapshot);
+    // console.log("firebase", snapshotArr);
+
     database.ref().on("child_added", function (snapshot) {
 
+        data = snapshot.val();
         var name = snapshot.val().name;
         var title = snapshot.val().title;
         var address = snapshot.val().address;
         var date = snapshot.val().date;
         var time = snapshot.val().time;
         var dateAndTime = moment(date + " " + time);
-        console.log(dateAndTime.format());
+        // console.log(dateAndTime.format());
         var description = snapshot.val().description;
-        console.log(title)
-        console.log(description)
+        // console.log(title);
+        // console.log(description);
 
-        $("#calendar").fullCalendar({
+        calendar.fullCalendar({
 
-            event: [
+            events: [
                 {
                     title: title,
                     name: name,
                     start: dateAndTime,
+                    end: dateAndTime,
                     address: address,
                     description: description,
                     allDay: false,
@@ -162,6 +187,22 @@ $(document).ready(function () {
             ],
         });
     });
+
+    //Loads the calendar on to the page
+    function loadCalendar() {
+
+        calendar.fullCalendar({
+            events: [
+                {
+                    title: "Test",
+                    start: "2018-12-25",
+                    description: "It's Christmas apparently.",
+                    color: '#A7D799'
+                    // eventBackgroundColor: '#A7D799'
+                }
+            ],
+        });
+    }
 
     loadCalendar();
 
