@@ -194,10 +194,6 @@ $(document).ready(function () {
                 description: description
 			};
 			
-			var llObj = {
-				lat: latAddress,
-                lng: lngAddress,
-			}
             //Pushes the values to Firebase
             database.ref().push(dbObj);
 
@@ -208,8 +204,6 @@ $(document).ready(function () {
             error.hide();
 			eventDiv.hide("drop", { direction: "right" }, "slow");
 			
-			//initMap();
-			//loadCalendar();
         }
 
         $.when(deferred).then(databasePush);
