@@ -20,14 +20,15 @@
 
 <body>
 
-    <nav class="nav w-100">
+    <nav class="nav w-100 border" id="navBar">
         <div class="container p-0">
             <img src="assets/images/navleaf.png" alt="Humaniteer Leaf" id="navLogo">
             <img src="assets/images/navname.png" alt="Humaniteer" id="navName">
-            <a class="nav-link border" href="#about">About Us</a>
-            <a class="nav-link border" href="#map">Add Event</a>
-            <a class="nav-link border" href="#calendar">Calendar</a>
-            <a class="nav-link border" href="#welcome">Welcome</a>
+            <a class="nav-link border" id="aboutNav">About Us</a>
+            <a class="nav-link border" id="mapNav">Add Event</a>
+            <a class="nav-link border" id="calendarNav">Calendar</a>
+            <a class="nav-link border" id="welcomeNav
+            ">Welcome</a>
         </div>
     </nav>
 
@@ -41,10 +42,10 @@
 
     <div class="container colors rounded p-3 border">
         <!-- <div class="row h-100"> -->
-            <!-- <div class="col-9"> -->
-                <div id="map"></div>
-            <!-- </div> -->
-            <!-- <div class="col-3">
+        <!-- <div class="col-9"> -->
+        <div id="map"></div>
+        <!-- </div> -->
+        <!-- <div class="col-3">
                 <form class="needs-validation pStyle" novalidate id="searchInput">
                     <label for="validationCustom05" class="ml-2 titleStyle"></label>
                     <input type="text" class="form-control w-50" id="validationCustom05" placeholder="Enter an address"
@@ -89,7 +90,7 @@
             </div> -->
         <!-- </div> -->
     </div>
-    <div class="container colors rounded calDiv mt-2 border p-3 clearfix" id="fullCalCont">
+    <div class="container colors rounded calDiv mt-5 border p-3 clearfix" id="fullCalCont">
         <div class="row">
             <div id="calendarCont" class="float-left">
                 <div>
@@ -174,19 +175,25 @@
                 Please try again.</p>
         </form>
     </div>
-    <div class="container colors rounded aboutDiv mt-2 mb-5 border" id="about">
+    <div class="container colors rounded aboutDiv mt-5 mb-5 border p-5" id="about">
         <div class="row">
-            <div class="col-6">
-                <h1 class="titleStyle">About us:</h1>
-                <p class="pStyle">Welcome and thank you for visiting us here at Humaniteer.<br><br>Humaniteer is a site
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h1 class="titleStyle">About Humaniteer:</h1>
+                <p class="pStyle mt-2">Welcome and thank you for visiting us here at Humaniteer.<br><br>Humaniteer is a site
                     to find local volunteer oppurtunites near you or to host your own volunteer events to help recruit
                     fellow volunteers and help make your community a better place.<br><br>This is a project made by <a
                         href="https://github.com/Jeremy-Atwood" target="_blank">Jeremy Atwood,</a> <a href="https://github.com/welljer"
                         target="_blank">Jeremy Cantwell,</a> <a href="https://github.com/adamcromer" target="_blank">&
                         Adam Cromer.</a>
             </div>
-            <div class="col-6">
+        </div>
+        <div class="row mt-5">
+            <div class="col-2"></div>
+            <div class="col-8">
                 <h1 class="titleStyle">Contact us:</h1>
+                <p class="pStyle mt-2">Please send an email to: </p>
+                <a href="mailto:humaniteerslc@gmail.com"> HumaniteerSLC@gmail.com</a>
             </div>
         </div>
     </div>

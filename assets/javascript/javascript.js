@@ -15,9 +15,9 @@ $(document).ready(function () {
 
     //Declaring variables equal to their HTML counterparts
     var zipSearch = $("#zipSearch");
-    var calendar = $('#calendar');
     var currentTime = $("#currentTime");
     var emptyTimeVar;
+    var calendar = $('#calendar');
     var next = $("#next");
     var previous = $("#previous");
     var month = $("#monthView");
@@ -30,10 +30,34 @@ $(document).ready(function () {
     var eventReset = $("#eventReset");
     var error = $("#error");
     var calendarCont = $("#calendarCont");
-    var fullCalCont = $("#fullCalCont");
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
     var testButton = $("#testButton");
+    var welcomeNav = $("#welcomeNav");
+    var mapNav = $("#mapNav");    
+    var calendarNav = $("#calendarNav")
+    var aboutNav = $("#aboutNav");
+
+    welcomeNav.click(function () {
+        welcome.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    mapNav.click(function () {
+        map.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    calendarNav.click(function () {
+        fullCalCont.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+    aboutNav.click(function () {
+        about.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -92,7 +116,7 @@ $(document).ready(function () {
 
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        fullCalCont.toggle("drop", { direction: "left" }, "slow");        
+        fullCalCont.toggle("drop", { direction: "left" }, "slow");
         calendarCont.toggleClass("smallCal", 500);
         emptyCalVar = setTimeout(shrinkCal, 500);
     }

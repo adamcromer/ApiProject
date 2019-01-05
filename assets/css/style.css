@@ -1,8 +1,5 @@
 html {
-    background: url(../images/leaves.jpg);
-    background-size: center center;
-    background-repeat: no-repeat;
-    background-position: fixed;
+    background: url(../images/leaves.jpg) no-repeat center center fixed;
 }
 
 body {
@@ -18,9 +15,14 @@ nav {
     z-index: 1000;
 }
 
+#navBar {
+    border-bottom:1vw;
+    border-color:#222A3F;
+}
+
 #navLogo,
 #navName {
-    height:3.75vw;
+    height:3.5vw;
 }
 
 .nav-link {
