@@ -34,6 +34,10 @@ $(document).ready(function () {
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
     var testButton = $("#testButton");
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+    var locations = [];
+    var markers = [];
 
     //Function to show the current time
     function setCurrentTime() {
@@ -92,7 +96,7 @@ $(document).ready(function () {
 
     // This minimizes the calendar and shows the event info on the side.
     function showEventInfo() {
-        fullCalCont.toggle("drop", { direction: "left" }, "slow");        
+        fullCalCont.toggle("drop", { direction: "left" }, "slow");
         calendarCont.toggleClass("smallCal", 500);
         emptyCalVar = setTimeout(shrinkCal, 500);
     }
@@ -107,28 +111,61 @@ $(document).ready(function () {
         var date = $("#dateInput").val().trim();
         var time = $("#timeInput").val().trim();
         var description = $("#descriptionInput").val().trim();
+        var latAddress;
+        var lngAddress;
 
         //Shows an error if an input is empty.
         if (name === "" || title === "" || address === "" || date === "" || time === "" || description === "") {
             error.show();
         }
-        else {
+
+        var deferred = new jQuery.Deferred();
+
+        codeAddress();
+        function codeAddress() {
+            var geoAddress = address;
+            geocoder.geocode({ 'address': geoAddress }, function (results, status) {
+                if (status == 'OK') {
+                    console.log(results);
+                    latAddress = results[0].geometry.location.lat();
+                    lngAddress = results[0].geometry.location.lng();
+                    console.log(latAddress, lngAddress);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    alert('Geocode was not successful for the following reason: ' + status);
+
+                }
+            });
+
+            return deferred.promise;
+        }
+
+        function databasePush() {
             //Pushes the values to Firebase
             database.ref().push({
                 name: name,
                 title: title,
                 address: address,
+                lat: latAddress,
+                lng: lngAddress,
                 start: date,
                 end: date,
                 time: time,
                 description: description
             });
 
+
             clearSubmit();
             error.hide();
             eventDiv.hide("drop", { direction: "right" }, "slow");
         }
+
+        $.when(deferred).then(databasePush);
+
+
     });
+
 
     testButton.click(function () {
         event.preventDefault();
@@ -169,6 +206,7 @@ $(document).ready(function () {
         // console.log(title);
         // console.log(description);
 
+
         calendar.fullCalendar({
 
             events: [
@@ -205,5 +243,29 @@ $(document).ready(function () {
     }
 
     loadCalendar();
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 40.635679, lng: -111.905296 },
+            zoom: 10,
+            mapTypeId: 'roadmap'
+        });
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function (location, i) {
+            return new google.maps.Marker({
+                position: location,
+                label: labels[i % labels.length]
+            });
+        });
+        var markerCluster = new MarkerClusterer(map, markers,
+            { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+    }
+    initMap();
 
 });
