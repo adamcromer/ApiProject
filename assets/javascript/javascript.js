@@ -19,7 +19,7 @@ $(document).ready(function () {
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
-    var mapCont = $("#mapCont");
+    var mapCont = $("#map");
     var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
@@ -306,7 +306,8 @@ $(document).ready(function () {
 			animation: google.maps.Animation.DROP,
 			map: map
 		});
-	}
+    }
+
     
 
 });
