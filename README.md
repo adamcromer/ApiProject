@@ -10,6 +10,6 @@ Humaniteer was made using Javascript, JQuery, HTML, CSS, FullCalendar, Bootstrap
 
 Background image and logo leaf made using files with permission from [Freepik.](http://www.freepik.com)
 <div>
-<img src="assets/images/navleaf.png" alt="Humaniteer Leaf" width="50%">
-<img src="assets/images/navname.png" alt="Humaniteer" width="50%" align="right">
+<img src="assets/images/navleaf.png" alt="Humaniteer Leaf" width="50%" align="center">
+<img src="assets/images/navname.png" alt="Humaniteer" width="50%">
 </div>
