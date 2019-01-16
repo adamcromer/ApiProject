@@ -9,7 +9,3 @@ This is a project made by [Jeremy Atwood,](https://github.com/Jeremy-Atwood) [Je
 Humaniteer was made using Javascript, JQuery, HTML, CSS, FullCalendar, Bootstrap, JQueryUI, Google Fonts, Google Firebase, and Google Maps.
 
 Background image and logo leaf made using files with permission from [Freepik.](http://www.freepik.com)
-<div>
-<img src="assets/images/navleaf.png" alt="Humaniteer Leaf" width="50%" align="center">
-<img src="assets/images/navname.png" alt="Humaniteer" width="50%" align="center">
-</div>
