@@ -72,10 +72,10 @@ $(document).ready(function () {
         eventArray.push(snapshot.val());
     });
 
-	ref.once("value", function() {
-		loadCalendar();
-		initMap();
-	  });
+    ref.once("value", function () {
+        loadCalendar();
+        initMap();
+    });
 
     //Function to show the current time
     function setCurrentTime() {
@@ -249,17 +249,17 @@ $(document).ready(function () {
             events: eventArray,
             eventColor: '#A7D799',
             eventClick: function (event) {
-                        updateHardInfo(event),
-                        updateEventText(event),
-                        showEventInfo()
-                    },
-                    eventMouseover: function (event) {
-                        updateEventText(event),
-                        showEventInfo()
-                    },
-                    eventMouseout: function (event) {
-                        showHardInfo(event)
-                    }
+                updateHardInfo(event),
+                    updateEventText(event),
+                    showEventInfo()
+            },
+            eventMouseover: function (event) {
+                updateEventText(event),
+                    showEventInfo()
+            },
+            eventMouseout: function (event) {
+                showHardInfo(event)
+            }
         });
     }
 
@@ -270,19 +270,19 @@ $(document).ready(function () {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
         // Create an array of alphabetical characters used to label the markers.
-		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		
-		for(var i = 0; i < eventArray.length; i++){
-			if(eventArray[i].lat == undefined){
-				
-			}else{
-				var obj = {
-					lat: eventArray[i].lat,
-					lng: eventArray[i].lng
-				}
-				locations.push(obj);
-			}
-		}
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        for (var i = 0; i < eventArray.length; i++) {
+            if (eventArray[i].lat == undefined) {
+
+            } else {
+                var obj = {
+                    lat: eventArray[i].lat,
+                    lng: eventArray[i].lng
+                }
+                locations.push(obj);
+            }
+        }
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
@@ -306,7 +306,5 @@ $(document).ready(function () {
 			map: map
 		});
     }
-
-    
 
 });
