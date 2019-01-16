@@ -19,7 +19,7 @@ $(document).ready(function () {
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
-    var mapCont = $("#mapCont");
+    var mapCont = $("#map");
     var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
@@ -35,7 +35,7 @@ $(document).ready(function () {
     var calendarCont = $("#calendarCont");
     var emptyCalVar;
     var eventInfo = $("#eventInfo");
-    var welcomeNav = $("#welcomeNav");
+	var welcomeNav = $("#welcomeNav");
     var mapNav = $("#mapNav");
     var calendarNav = $(".calendarNav")
     var aboutNav = $("#aboutNav");
@@ -181,8 +181,7 @@ $(document).ready(function () {
         }
 
         function databasePush() {
-            //Pushes the values to Firebase
-            database.ref().push({
+			var dbObj = {
                 name: name,
                 title: title,
                 address: address,
@@ -192,11 +191,18 @@ $(document).ready(function () {
                 end: date,
                 time: time,
                 description: description
-            });
+			};
+			
+            //Pushes the values to Firebase
+            database.ref().push(dbObj);
+
+			calendar.fullCalendar("renderEvent", dbObj);
+			addNewMapMarker(latAddress, lngAddress);
 
             clearSubmit();
             error.hide();
-            eventDiv.hide("drop", { direction: "right" }, "slow");
+			eventDiv.hide("drop", { direction: "right" }, "slow");
+			
         }
 
         $.when(deferred).then(databasePush);
@@ -258,10 +264,10 @@ $(document).ready(function () {
     }
 
     function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 40.635679, lng: -111.905296 },
-            zoom: 10,
-            mapTypeId: 'roadmap'
+			zoom: 10,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
         // Create an array of alphabetical characters used to label the markers.
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -280,8 +286,9 @@ $(document).ready(function () {
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
-        // The map() method here has nothing to do with the Google Maps API.
+		// The map() method here has nothing to do with the Google Maps API.
         var markers = locations.map(function (location, i) {
+			console.log(location);
             return new google.maps.Marker({
                 position: location,
                 label: labels[i % labels.length]
@@ -289,7 +296,15 @@ $(document).ready(function () {
         });
         var markerCluster = new MarkerClusterer(map, markers,
             { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+	}
+	
+	function addNewMapMarker(lat, lng){
+		var location = new google.maps.LatLng(lat, lng);
+		marker = new google.maps.Marker({
+			position: location,
+			animation: google.maps.Animation.DROP,
+			map: map
+		});
     }
-
 
 });
