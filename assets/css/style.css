@@ -94,6 +94,9 @@ hr {
 #map {
     height:100%;
     height:40vw;
+}
+
+#mapCont {
     display:none;
 }
 

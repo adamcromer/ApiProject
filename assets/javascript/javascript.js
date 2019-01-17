@@ -19,7 +19,7 @@ $(document).ready(function () {
     var currentTime = $("#currentTime");
     var emptyTimeVar;
     var calendar = $('#calendar');
-    var mapCont = $("#map");
+    var mapCont = $("#mapCont");
     var fullCalCont = $("#fullCalCont")
     var next = $("#next");
     var previous = $("#previous");
